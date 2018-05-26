@@ -12,7 +12,10 @@ MAKEARGS	= -C
 BLOGMD		= index.md
 HEADMD		= head.md
 
-POST_DIR	= ./posts
+# The underscore here in the post directory is a hack
+# that lets me create a new post directory because of
+# the way sed is used below
+POST_DIR	= posts
 
 POSTSMD		= $(shell find ${POST_DIR} -type f -name "*.md")
 POSTSRAW	= ${POSTSMD:.md=.raw}
@@ -29,6 +32,7 @@ all: rawbuild ${POSTSHTML} ${BLOGMD}
 
 ${BLOGMD}: ${HEADMD}
 	cp -v head.md index.md
+	./build.sh ${POST_DIR} >> index.md
 
 # How to build the real html files
 %.html: %.raw
@@ -49,5 +53,6 @@ rawbuild: ${POSTSRAW}
 
 # Remove the html files
 clean:
+	-rm -rfv $$(ls -F ${POST_DIR} | grep "/")
 	-rm -v ${POSTSRAW}
 	-rm -v ${BLOGMD}
