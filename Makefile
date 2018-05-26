@@ -13,7 +13,7 @@ MKFILE   	= Makefile
 SOURCE_DIR	= source
 DEPLOY_DIR	= /var/www/html/zamlz.org/public_html
 
-MAKEARGS	= --no-print-directory -C
+MAKEARGS	= -C
 
 ########################################################
 
@@ -27,8 +27,8 @@ clean:
 
 # Deploy to the server folder
 deploy:
-	- sudo rm -rf ${DEPLOY_DIR}
-	sudo ./push ${SOURCE_DIR} ${DEPLOY_DIR}
+	- sudo rm -rfv ${DEPLOY_DIR}
+	sudo ./push.sh ${SOURCE_DIR} ${DEPLOY_DIR}
 
 ########################################################
 

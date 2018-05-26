@@ -7,30 +7,30 @@
 
 ########################################################
 
-MAKEARGS	= --no-print-directory -C
+MAKEARGS	= -C
 
-HOME		= index.html
-BLOG		= blog/index.html
-ABOUT		= about/index.html
+PAGES		= index.html       \
+			  blog/index.html  \
+			  about/index.html
+
+BLOG_DIR	= blog
+
+MDHTML		= -f markdown -t html -s
 
 ########################################################
 
 # Specify all the files that we build here
-all: ${HOME} ${BLOG} ${ABOUT}
+all: blogbuild ${PAGES}
 
-# Describe the recipe for index.html
-${HOME}: ${HOME:.html=.md}
-	pandoc ${HOME:.html=.md} -f markdown  -t html -s -o ${HOME}
+# Build the blog/index.md file
+blogbuild :
+	+${MAKE} ${MAKEARGS} ${BLOG_DIR}
 
-# Describe the recipe for blog.html
-${BLOG}: ${BLOG:.html=.md}
-	pandoc ${BLOG:.html=.md} -f markdown  -t html -s -o ${BLOG}
+# How to build all the html files
+%.html : %.md
+	pandoc $< ${MDHTML} -o $@
 
-# Describe the recipe for about.html
-${ABOUT}: ${ABOUT:.html=.md}
-	pandoc ${ABOUT:.html=.md} -f markdown  -t html -s -o ${ABOUT}
-
+# Remove the html files
 clean:
-	- rm ${HOME}
-	- rm ${ABOUT}
-	- rm ${BLOG}
+	+${MAKE} ${MAKEARGS} ${BLOG_DIR} clean
+	- rm ${PAGES}
