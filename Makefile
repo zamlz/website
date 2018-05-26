@@ -26,7 +26,7 @@ clean:
 	+${MAKE} ${MAKEARGS} ${SOURCE_DIR} clean
 
 # Deploy to the server folder
-deploy:
+deploy: build
 	- sudo rm -rfv ${DEPLOY_DIR}
 	sudo ./push.sh ${SOURCE_DIR} ${DEPLOY_DIR}
 
