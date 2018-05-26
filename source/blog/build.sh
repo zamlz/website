@@ -11,8 +11,20 @@ if [ -z $1 ]; then
 fi
 
 # Continue onward
+
+# find luckilu prints output in the order I need them in
 postlist=$(find ${POST_DIR} -type f -name "*.html")
+echo ""
 
 for post in ${postlist}; do
-    echo $post
+
+    url=${post}
+
+    day=$(echo ${post} | sed -e 's/\// /g' | awk '{print $2}')
+
+    name=$(grep h1 ${post} | pandoc -f html -t commonmark)
+    name=$(echo ${name} | sed -e 's/# //')
+
+    echo "${day} - [${name}](${url})"
+    echo ""
 done
