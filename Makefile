@@ -10,8 +10,8 @@
 README   	= README
 MKFILE   	= Makefile
 
-SOURCE		= source
-DEPLOYDIR	= /var/www/html/
+SOURCE_DIR	= source
+DEPLOY_DIR	= ${HOME}/tmp/web
 
 MAKEARGS	= --no-print-directory -C
 
@@ -19,8 +19,16 @@ MAKEARGS	= --no-print-directory -C
 
 # Builds the html files
 build:
-	+${MAKE} ${MAKEARGS} ${SOURCE}
+	+${MAKE} ${MAKEARGS} ${SOURCE_DIR}
 
 # Clean up after the builder
 clean:
-	+${MAKE} ${MAKEARGS} ${SOURCE} clean
+	+${MAKE} ${MAKEARGS} ${SOURCE_DIR} clean
+
+# Deploy to the server folder
+deploy:
+	- rm -rf ${DEPLOY_DIR}
+	./push ${SOURCE_DIR} ${DEPLOY_DIR}
+
+########################################################
+
