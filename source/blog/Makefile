@@ -18,41 +18,43 @@ HEADMD		= head.md
 POST_DIR	= posts
 
 POSTSMD		= $(shell find ${POST_DIR} -type f -name "*.md")
-POSTSRAW	= ${POSTSMD:.md=.raw}
+POSTSRAW	= ${POSTSMD:.md=.tmp}
 
 PRDIR		= $(shell echo ${POSTSRAW} | sed -e 's/_/\//g')
-POSTSHTML	= ${PRDIR:.raw=.html}
+POSTSHTML	= ${PRDIR:.tmp=.html}
 
 MDHTML		= -f markdown -t html -s
 
 ########################################################
 
 # Specify all the files that we build here
-all: rawbuild ${POSTSHTML} ${BLOGMD}
+all: tmpbuild ${POSTSHTML} ${BLOGMD}
 
 ${BLOGMD}: ${HEADMD}
 	cp -v head.md index.md
 	./build.sh ${POST_DIR} >> index.md
 
 # How to build the real html files
-%.html: %.raw
+%.html: %.tmp
 	@mv -v $< $@
 	
 
-# Build the raw files
-rawbuild: ${POSTSRAW}
-	for rawpost in ${POSTSRAW}; do \
-		newraw=$$(echo $$rawpost | sed -e s'/_/\//g'); \
-		mkdir -p $$(dirname $$newraw); \
-		cp -v $$rawpost $$newraw; \
+# Build the tmp files
+tmpbuild: ${POSTSRAW}
+	for tmppost in ${POSTSRAW}; do \
+		newtmp=$$(echo $$tmppost | sed -e s'/_/\//g'); \
+		mkdir -p $$(dirname $$newtmp); \
+		cp -v $$tmppost $$newtmp; \
 	done; 
 
-# How to build all the raw html files
-%.raw : %.md
+# How to build all the tmp html files
+%.tmp : %.md
 	pandoc $< ${MDHTML} -o $@
 
 # Remove the html files
 clean:
-	-rm -rfv $$(ls -F ${POST_DIR} | grep "/")
+	for pdir in $$(ls -F ${POST_DIR} | grep "/"); do \
+		rm -rfv ${POST_DIR}/$$pdir; \
+	done;
 	-rm -v ${POSTSRAW}
 	-rm -v ${BLOGMD}
