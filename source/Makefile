@@ -9,18 +9,18 @@
 
 MAKEARGS	= --no-print-directory -C
 
-INDEX		= index.html
-BLOG		= blog.html
-ABOUT		= about.html
+HOME		= index.html
+BLOG		= blog/index.html
+ABOUT		= about/index.html
 
 ########################################################
 
 # Specify all the files that we build here
-all: ${INDEX} ${BLOG} ${ABOUT}
+all: ${HOME} ${BLOG} ${ABOUT}
 
 # Describe the recipe for index.html
-${INDEX}: ${INDEX:.html=.md}
-	pandoc ${INDEX:.html=.md} -f markdown  -t html -s -o ${INDEX}
+${HOME}: ${HOME:.html=.md}
+	pandoc ${HOME:.html=.md} -f markdown  -t html -s -o ${HOME}
 
 # Describe the recipe for blog.html
 ${BLOG}: ${BLOG:.html=.md}
@@ -31,6 +31,6 @@ ${ABOUT}: ${ABOUT:.html=.md}
 	pandoc ${ABOUT:.html=.md} -f markdown  -t html -s -o ${ABOUT}
 
 clean:
-	- rm ${INDEX}
+	- rm ${HOME}
 	- rm ${ABOUT}
 	- rm ${BLOG}
