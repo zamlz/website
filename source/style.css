@@ -2,11 +2,26 @@
 /* Body stuff */
 body {
     font-family: 'EB Garamond', Garamond, Georgia, serif;
-    font-size: 22px;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
     padding: 1em 4%;
-    color: #000000;
-    background: #ffffff;
+    color: #bbbbbb;
+    background: #111111;
+}
+
+/* center the header */
+h1 {
+    text-align: center;
+}
+
+/* navigation */
+nav {
+    display: grid;
+    grid: 5em / auto auto auto;
+}
+
+nav>a {
+    text-align: center;
+    font-size: 1.1em;
 }
