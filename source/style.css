@@ -2,6 +2,7 @@
 /* Body stuff */
 body {
     font-family: 'EB Garamond', Garamond, Georgia, serif;
+    font-size: 1.2em;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
@@ -15,13 +16,30 @@ h1 {
     text-align: center;
 }
 
-/* navigation */
-nav {
-    display: grid;
-    grid: 5em / auto auto auto;
+/* standard links */
+a, a:visited {
+    text-decoration: none;
+    color: #458588;
 }
 
-nav>a {
+a:hover {
+    text-decoration: underline;
+}
+
+/* navigation  bar */
+nav {
+    display: grid;
+    grid: 1.5em / auto auto auto auto;
+}
+
+nav a, nav a:visited {
+    color: #bbbbbb;
     text-align: center;
     font-size: 1.1em;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #98971a;
+    text-decoration: none;
 }
