@@ -10,12 +10,14 @@
 MAKEARGS	= -C
 
 PAGES		= index.html       \
-			  blog/index.html  \
-			  about/index.html
+			  blog/index.html
 
 BLOG_DIR	= blog
 
-MDHTML		= -f markdown -t html -s --template=.template.html
+MDHTML		= 	-f markdown -t html -s \
+				--template=.template.html \
+				--include-before=.header.html \
+				--include-after=.footer.html
 
 ########################################################
 

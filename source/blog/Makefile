@@ -23,8 +23,11 @@ POSTSRAW	= ${POSTSMD:.md=.tmp}
 PRDIR		= $(shell echo ${POSTSRAW} | sed -e 's/_/\//g')
 POSTSHTML	= ${PRDIR:.tmp=.html}
 
-MDHTML		= -f markdown -t html -s --template=../.template.html
 BUILDER		= ./build.sh
+MDHTML		= 	-f markdown -t html -s \
+				--template=../.template.html \
+				--include-before=../.header.html \
+				--include-after=../.footer.html
 
 ########################################################
 
