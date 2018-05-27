@@ -1,8 +1,8 @@
 
 /* Body stuff */
 body {
-    font-family: 'EB Garamond';
-    /* font-size: 22px; */
+    font-family: 'EB Garamond', Garamond, Georgia, serif;
+    font-size: 22px;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
