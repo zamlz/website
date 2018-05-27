@@ -27,7 +27,7 @@ clean:
 
 # Deploy to the server folder
 install: 
-	./push.sh ${SOURCE_DIR} ${INSTALL_DIR}
+	./install.sh ${SOURCE_DIR} ${INSTALL_DIR}
 
 ########################################################
 
