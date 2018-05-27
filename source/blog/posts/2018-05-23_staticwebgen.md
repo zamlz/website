@@ -1,2 +1,8 @@
-# Static Website Generator
+
+---
+title: Static Website Generator
+author: zamlz
+date: 2018-05-23
+---
+
 Decided I should work on creating my own static web generator instead of jekyll.

@@ -23,15 +23,12 @@ POSTSRAW	= ${POSTSMD:.md=.tmp}
 PRDIR		= $(shell echo ${POSTSRAW} | sed -e 's/_/\//g')
 POSTSHTML	= ${PRDIR:.tmp=.html}
 
-MDHTML		= -f markdown -t html -s
+MDHTML		= -f markdown -t html -s --template=../.template.html
 BUILDER		= ./build.sh
 
 ########################################################
 
-# Specify all the files that we build here
-all: tmpbuild ${POSTSHTML} ${BLOGMD}
-
-${BLOGMD}: ${HEADMD} ${BUILDER}
+${BLOGMD}: tmpbuild ${POSTSHTML} ${HEADMD} ${BUILDER}
 	cp -v head.md index.md
 	${BUILDER} ${POST_DIR} >> index.md
 

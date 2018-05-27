@@ -13,12 +13,14 @@ echo "=========================================="
 echo "Source Directory: ${SOURCE_DIR}"
 echo "Deploy Directory: ${DEPLOY_DIR}"
 echo "=========================================="
+rm -rfv ${DEPLOY_DIR}
+echo "=========================================="
 
 # Push a specific type of file to the deploy directory
 # $1 file type
 deploy () {
    
-    for src in $(find ${SOURCE_DIR} -type f -name "${1}"); do
+    for src in $(find ${SOURCE_DIR} -type f -name "${1}" | grep -v '/\.'); do
 
         sedarg="-r s/^${SOURCE_DIR}//"
         destination="${DEPLOY_DIR}$(echo ${src} | eval sed "$sedarg")"

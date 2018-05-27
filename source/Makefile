@@ -15,7 +15,7 @@ PAGES		= index.html       \
 
 BLOG_DIR	= blog
 
-MDHTML		= -f markdown -t html -s
+MDHTML		= -f markdown -t html -s --template=.template.html
 
 ########################################################
 

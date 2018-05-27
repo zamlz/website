@@ -1,2 +1,6 @@
-# zamlz.org
+
+---
+title: zamlz.org
+---
+
 Welcome to my personal webpage.
