@@ -2,7 +2,7 @@
 
 # Parse command line arguments
 SOURCE_DIR=$1
-DEPLOY_DIR=$2
+INSTALL_DIR=$2
 
 if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Missing command line arguments"
@@ -10,20 +10,25 @@ if [ -z "$1" ] || [ -z "$2" ]; then
 fi
 
 echo "=========================================="
-echo "Source Directory: ${SOURCE_DIR}"
-echo "Deploy Directory: ${DEPLOY_DIR}"
+echo "Source Directory  : ${SOURCE_DIR}"
+echo "Install Directory : ${INSTALL_DIR}"
 echo "=========================================="
-rm -rfv ${DEPLOY_DIR}
+echo "rm -rfv ${INSTALL_DIR}"
+rm -rfv ${INSTALL_DIR}
 echo "=========================================="
 
-# Push a specific type of file to the deploy directory
+# Push a specific type of file to the install directory
 # $1 file type
-deploy () {
+install () {
    
+    if [ -z "$(find ${SOURCE_DIR} -type f -name "${1}" | grep -v '/\.')" ]; then
+        echo "Warning: No files of type '${1}' are available. Make sure you run 'make build'";
+    fi
+
     for src in $(find ${SOURCE_DIR} -type f -name "${1}" | grep -v '/\.'); do
 
         sedarg="-r s/^${SOURCE_DIR}//"
-        destination="${DEPLOY_DIR}$(echo ${src} | eval sed "$sedarg")"
+        destination="${INSTALL_DIR}$(echo ${src} | eval sed "$sedarg")"
 
         mkdir -v -p $(dirname ${destination})
         cp ${src} ${destination}
@@ -32,5 +37,5 @@ deploy () {
     done
 }
 
-deploy "*.html"
+install "*.html"
 

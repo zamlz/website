@@ -11,7 +11,7 @@ README   	= README
 MKFILE   	= Makefile
 
 SOURCE_DIR	= source
-DEPLOY_DIR	= /var/www/html/zamlz.org/public_html
+INSTALL_DIR	= /var/www/html/zamlz.org/public_html
 
 MAKEARGS	= -C
 
@@ -26,8 +26,8 @@ clean:
 	+${MAKE} ${MAKEARGS} ${SOURCE_DIR} clean
 
 # Deploy to the server folder
-deploy: build
-	./push.sh ${SOURCE_DIR} ${DEPLOY_DIR}
+install: 
+	./push.sh ${SOURCE_DIR} ${INSTALL_DIR}
 
 ########################################################
 
