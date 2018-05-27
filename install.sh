@@ -38,4 +38,4 @@ install () {
 }
 
 install "*.html"
-
+install "*.css"
