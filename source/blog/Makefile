@@ -9,7 +9,7 @@
 
 MAKEARGS	= -C
 
-BLOGMD		= index.md
+BLOGMD		= bloglist.tmp
 TOPMD		= top.md
 
 POST_DIR	= posts
@@ -29,8 +29,8 @@ MDHTML		= 	-f markdown -t html -s \
 ########################################################
 
 ${BLOGMD}: tmpbuild ${POSTSHTML} ${TOPMD} ${BUILDER}
-	cp -v ${TOPMD} index.md
-	${BUILDER} ${POST_DIR} >> index.md
+	cp -v ${TOPMD} ${BLOGMD}
+	${BUILDER} ${POST_DIR} >> ${BLOGMD}
 
 # How to build the real html files
 %.html: %.tmp

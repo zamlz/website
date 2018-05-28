@@ -10,8 +10,10 @@
 MAKEARGS	= -C
 
 PAGES		= index.html \
-			  blog/index.html \
 			  contact/index.html
+			  
+BLOG		= blog/index.html
+BLOGMD		= blog/bloglist.tmp
 
 BLOG_DIR	= blog
 
@@ -23,17 +25,21 @@ MDHTML		= 	-f markdown -t html -s \
 ########################################################
 
 # Specify all the files that we build here
-all: blogbuild ${PAGES}
-
-# Build the blog/index.md file
-blogbuild :
-	+${MAKE} ${MAKEARGS} ${BLOG_DIR}
+all: ${PAGES} ${BLOG}
 
 # How to build all the html files
 %.html : %.md
 	pandoc $< ${MDHTML} -o $@
 
+# Build the blog html file
+${BLOG}: blogupdate ${BLOGMD}
+	pandoc ${BLOGMD} ${MDHTML} -o ${BLOG}
+
+# Update the blog markdown file
+blogupdate:
+	+${MAKE} ${MAKEARGS} ${BLOG_DIR}
+
 # Remove the html files
 clean:
 	+${MAKE} ${MAKEARGS} ${BLOG_DIR} clean
-	- rm ${PAGES}
+	- rm ${PAGES} ${BLOG}
