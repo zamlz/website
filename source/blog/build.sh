@@ -18,7 +18,7 @@ echo ""
 
 for post in ${postlist}; do
 
-    url="${post}"
+    url="/blog/${post}"
 
     day=$(echo ${post} | sed -e 's/\// /g' | awk '{print $2}')
 

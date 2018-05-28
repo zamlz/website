@@ -10,11 +10,8 @@
 MAKEARGS	= -C
 
 BLOGMD		= index.md
-HEADMD		= head.md
+TOPMD		= top.md
 
-# The underscore here in the post directory is a hack
-# that lets me create a new post directory because of
-# the way sed is used below
 POST_DIR	= posts
 
 POSTSMD		= $(shell find ${POST_DIR} -type f -name "*.md")
@@ -31,8 +28,8 @@ MDHTML		= 	-f markdown -t html -s \
 
 ########################################################
 
-${BLOGMD}: tmpbuild ${POSTSHTML} ${HEADMD} ${BUILDER}
-	cp -v head.md index.md
+${BLOGMD}: tmpbuild ${POSTSHTML} ${TOPMD} ${BUILDER}
+	cp -v ${TOPMD} index.md
 	${BUILDER} ${POST_DIR} >> index.md
 
 # How to build the real html files

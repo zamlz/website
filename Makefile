@@ -9,11 +9,13 @@
 
 README   	= README
 MKFILE   	= Makefile
+MAKEARGS	= -C
 
 SOURCE_DIR	= source
 INSTALL_DIR	= /var/www/html/zamlz.org/public_html
 
-MAKEARGS	= -C
+ADDRESS		= 127.0.0.1
+PORT		= 8000
 
 ########################################################
 
@@ -25,7 +27,11 @@ build:
 clean:
 	+${MAKE} ${MAKEARGS} ${SOURCE_DIR} clean
 
-# Deploy to the server folder
+# Test the system locally
+test: build
+	./server.sh ${SOURCE_DIR} ${ADDRESS} ${PORT}
+
+# Install to the server folder
 install: 
 	./install.sh ${SOURCE_DIR} ${INSTALL_DIR}
 
