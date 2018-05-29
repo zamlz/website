@@ -12,9 +12,9 @@ and it turns out python comes with one aldready.
 ### Prerequisites
 
 Make sure the following programs are installed and in your path.
- - GNU/Make
- - Pandoc
- - Python *(Needed for creating a local http server)*
+ - [GNU/Make](https://www.gnu.org/software/make/)
+ - [Pandoc](http://pandoc.org/)
+ - [Python](https://www.python.org/) *(Needed for creating a local http server)*
  
 All source files are found in the `source/` directory. You can modify
 the location of this directory to whatever by editing the variable
