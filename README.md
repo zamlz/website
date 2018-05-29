@@ -47,6 +47,30 @@ You can also override the installation directory for testing purposes.
 $ make install INSTAL_DIR='/your/custom/directory/here'
 ```
 
+Finally we can run a test http server with the following command,
+it will make the source directory the root directory of the
+http server.
+```
+$ make test
+```
+You can also override the default address and port,
+```
+$ make test ADDRESS='127.0.1.1' PORT=8080
+```
+
 ### How it works
 
-To be explained...
+The `make build` command essentially runs the default make target
+in the Makefile that exists in the source directory. This Makefile
+is responsible for building the individual html files. The details
+of this Makefile are can be whatever you wish, but they should end
+up building the html files in the locations relative to the
+`SOURCE_DIR`. Meaning, that there should be an `index.html` in the
+in the source directory after running `make build` at the very least.
+The makefile should give more information about what is happening
+under the hood.
+
+The `make install` will then copy only the file types specified in
+the `install.sh` script. You can specify the regular expressions
+which search for the files at the bottom of that script.
+
