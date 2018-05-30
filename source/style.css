@@ -1,8 +1,8 @@
 
 /* Body stuff */
 body {
-    font-family: 'EB Garamond', Garamond, Georgia, serif;
-    font-size: 1.2em;
+    font-family: 'Lucida Console', Monaco, monospace;
+    font-size: 1.1em;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
@@ -14,32 +14,49 @@ body {
 /* center the header */
 h1 {
     text-align: center;
+    color: #458588;
 }
 
 /* standard links */
 a, a:visited {
     text-decoration: none;
-    color: #458588;
+    color: #dddddd;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #d79921;
 }
 
 /* navigation  bar */
 nav {
     display: grid;
-    grid: 1.5em / auto auto auto auto;
+    grid: 1.2em / auto auto auto auto;
 }
 
 nav a, nav a:visited {
-    color: #bbbbbb;
+    color: #444444;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1em;
     text-decoration: none;
 }
 
 nav a:hover {
     color: #98971a;
     text-decoration: none;
+}
+
+/* Special blog related CSS */
+/* hides the author */
+.author {
+    display: inline;
+    padding-left: 2em;
+    color: #b16286;
+    font-size: 0.9em;
+}
+
+.date {
+    display: inline;
+    color: #689d6a;
+    font-size: 0.9em;
 }
