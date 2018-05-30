@@ -2,7 +2,7 @@
 /* Body stuff */
 body {
     font-family: 'Lucida Console', Monaco, monospace;
-    font-size: 1.1em;
+    font-size: 1em;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
@@ -15,6 +15,13 @@ body {
 h1 {
     text-align: center;
     color: #458588;
+}
+
+/* Make the inner content padded */
+#inner-content {
+    max-width: 45em;
+    margin: auto;
+    padding: 1em 4%;
 }
 
 /* standard links */
