@@ -26,6 +26,5 @@ for post in ${postlist}; do
     name=$(echo ${name} | pandoc -f html -t commonmark)
     name=$(echo ${name} | sed -e 's/# //')
 
-    echo "${day} - [${name}](${url})"
-    echo ""
+    echo " - ${day} - [*${name}*](${url})"
 done
