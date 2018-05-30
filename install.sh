@@ -39,3 +39,4 @@ install () {
 
 install "*.html"
 install "*.css"
+install "favicon.ico"
