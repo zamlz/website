@@ -6,4 +6,3 @@ css:
 - /style.css
 ---
 
-This is a blog
