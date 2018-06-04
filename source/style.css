@@ -7,7 +7,7 @@ body {
     max-width: 50em;
     margin: auto;
     padding: 1em 4%;
-    color: #777777;
+    color: #888888;
     background: #111111;
 }
 
@@ -15,6 +15,10 @@ body {
 h1 {
     text-align: center;
     color: #458588;
+}
+
+h2, h3, h4, h5 {
+    color: #bbbbbb
 }
 
 /* Make the inner content padded */
@@ -27,7 +31,7 @@ h1 {
 /* standard links */
 a, a:visited {
     text-decoration: none;
-    color: #ffffff;
+    color: #dddddd;
 }
 
 a:hover {
@@ -42,7 +46,7 @@ nav {
 }
 
 nav a, nav a:visited {
-    color: #888888;
+    color: #bbbbbb;
     text-align: center;
     font-size: 1em;
     text-decoration: none;

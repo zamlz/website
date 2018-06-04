@@ -27,5 +27,5 @@ just convert a markdown files to html files, it has some
 really useful features.
 
 
-[pandoc]: pandoc.org
+[pandoc]: http://pandoc.org
 
