@@ -1,6 +1,6 @@
 
 ---
-title: ZAMLZ
+title: Z A M L Z
 css:
   - "https://fonts.googleapis.com/css?family=EB+Garamond"
   - "/style.css"
