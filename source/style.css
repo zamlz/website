@@ -1,24 +1,27 @@
 
 /* Body stuff */
 body {
-    font-family: 'Lucida Console', Monaco, monospace;
-    font-size: 1em;
+    /* font-family: 'Lucida Console', Monaco, monospace; */
+    font-family: 'EB Garamond';
+    font-size: 22px;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
     padding: 1em 4%;
-    color: #888888;
-    background: #111111;
+    background: #FFFFFF;
+    color: #111111;
 }
 
 /* center the header */
 h1 {
     text-align: center;
     color: #458588;
+    font-weight: normal;
 }
 
 h2, h3, h4, h5 {
-    color: #bbbbbb
+    color: #000000;
+    font-weight: normal;
 }
 
 /* Make the inner content padded */
@@ -31,12 +34,12 @@ h2, h3, h4, h5 {
 /* standard links */
 a, a:visited {
     text-decoration: none;
-    color: #dddddd;
+    color: #b16286;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #d79921;
+    color: #b16286;
 }
 
 /* navigation  bar */
@@ -46,7 +49,7 @@ nav {
 }
 
 nav a, nav a:visited {
-    color: #bbbbbb;
+    color: #111111;
     text-align: center;
     font-size: 1em;
     text-decoration: none;
@@ -60,14 +63,13 @@ nav a:hover {
 /* Special blog related CSS */
 /* hides the author */
 .author {
-    display: inline;
-    padding-left: 2em;
+    text-align: center;
     color: #b16286;
-    font-size: 0.9em;
+    font-size: 1.5em;
 }
 
 .date {
-    display: inline;
+    text-align: center;
     color: #689d6a;
-    font-size: 0.9em;
+    font-size: 1.2em;
 }

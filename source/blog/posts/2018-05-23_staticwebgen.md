@@ -1,9 +1,11 @@
 
 ---
 title: Static Website Generator
-author: zamlz
-date: 2018-05-23
-css: /style.css
+author: Amlesh Sivanantham
+date: May 5, 2018
+css:
+  - "https://fonts.googleapis.com/css?family=EB+Garamond"
+  - "/style.css"
 ---
 
 ### The problem with static website generators
