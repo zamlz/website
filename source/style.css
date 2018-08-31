@@ -3,7 +3,7 @@
 body {
     /* font-family: 'Lucida Console', Monaco, monospace; */
     font-family: 'EB Garamond';
-    font-size: 22px;
+    font-size: 18px;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
@@ -14,13 +14,15 @@ body {
 
 /* center the header */
 h1 {
-    font-size: 66px;
+    font-size: 54px;
     text-align: center;
     color: #458588;
     font-weight: normal;
+    line-height: 1em;
 }
 
 h2, h3, h4, h5 {
+    text-decoration: underline dotted;
     color: #000000;
     font-weight: normal;
 }
@@ -39,7 +41,7 @@ a, a:visited {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline dotted;
     color: #b16286;
 }
 
@@ -64,13 +66,28 @@ nav a:hover {
 /* Special blog related CSS */
 /* hides the author */
 .author {
+    text-decoration: none;
     text-align: center;
     color: #b16286;
     font-size: 1.5em;
 }
 
 .date {
+    text-decoration: none;
     text-align: center;
     color: #689d6a;
     font-size: 1.2em;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15em;
 }

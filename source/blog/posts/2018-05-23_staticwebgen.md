@@ -1,6 +1,6 @@
 
 ---
-title: Static Website Generator
+title: Making your own Static Website Generator
 author: Amlesh Sivanantham
 date: May 5, 2018
 css:
@@ -8,7 +8,7 @@ css:
   - "/style.css"
 ---
 
-### The problem with static website generators
+### The Problem with Static Website Generators
 
 Static website generators are really common these days,
 but most require a lot of dependencies. For example,

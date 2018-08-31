@@ -6,4 +6,8 @@ css:
   - "/style.css"
 ---
 
-Welcome to my personal webpage.
+<img class="profile" src="/profile.png"/>
+
+Welcome to the website of Amlesh Sivanantham.
+
+**Currently Under Construction!**
