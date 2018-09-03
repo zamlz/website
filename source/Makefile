@@ -17,10 +17,14 @@ BLOGMD		= blog/bloglist.tmp
 
 BLOG_DIR	= blog
 
+TEMPLATE	= .template.html
+HEADER		= .header.html
+FOOTER		= .footer.html
+
 MDHTML		= 	-f markdown -t html -s \
-				--template=.template.html \
-				--include-before=.header.html \
-				--include-after=.footer.html
+				--template=${TEMPLATE} \
+				--include-before=${HEADER} \
+				--include-after=${FOOTER}
 
 ########################################################
 
@@ -28,11 +32,11 @@ MDHTML		= 	-f markdown -t html -s \
 all: ${PAGES} ${BLOG}
 
 # How to build all the html files
-%.html : %.md
+%.html : %.md ${TEMPLATE} ${HEADER} ${FOOTER}
 	pandoc $< ${MDHTML} -o $@
 
 # Build the blog html file
-${BLOG}: blogupdate ${BLOGMD}
+${BLOG}: blogupdate ${BLOGMD} ${TEMPLATE} ${HEADER} ${FOOTER}
 	pandoc ${BLOGMD} ${MDHTML} -o ${BLOG}
 
 # Update the blog markdown file
