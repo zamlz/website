@@ -4,7 +4,6 @@ title: Making a Static Website Generator
 author: Amlesh Sivanantham
 date: May 5, 2018
 css:
-  - "https://fonts.googleapis.com/css?family=EB+Garamond"
   - "/style.css"
 ---
 
@@ -33,7 +32,7 @@ bind these tools together. Finally, I also used python to create a simple
 test HTTP server so I view my website on localhost.
 
 *By the way, this whole website can be viewed from this
-[public repository][gitlabweb].
+[public repository][githubweb].
 It not only contains all the markdown pages but also the very build/install
 scripts that were used to create this very page. The only downside of
 having the website in a public repository is that anyone can view posts not
@@ -43,7 +42,7 @@ A possible fix would be to use GPG to encrypt these posts.*
 ### More to come below...
 
 
-[gitlabweb]: https://gitlab.com/zamlz/website
+[githubweb]: https://github.com/zamlz/website
 
 [markdown]: https://commonmark.org
 [pandoc]: https://pandoc.org
