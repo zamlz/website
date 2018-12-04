@@ -1,30 +1,30 @@
 
 /* Body stuff */
 body {
-    /* font-family: 'Lucida Console', Monaco, monospace; */
-    font-family: 'EB Garamond';
-    font-size: 18px;
+    font-family: 'Lucida Console', Monaco, monospace;
+    /* font-family: 'EB Garamond'; */
+    font-size: 16px;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
     padding: 1em 4%;
-    background: #FFFFFF;
-    color: #111111;
+    background: #181818;
+    color: #d8d8d8;
 }
 
 /* center the header */
 h1 {
-    font-size: 54px;
+    font-size: 40px;
     text-align: center;
-    color: #458588;
+    color: #7cafc2;
     font-weight: normal;
     line-height: 1em;
 }
 
 h2, h3, h4, h5 {
-    text-decoration: underline dotted;
-    color: #000000;
-    font-weight: normal;
+    text-decoration: underline;
+    color: #d8d8d8;
+    font-weight: bold;
 }
 
 /* Make the inner content padded */
@@ -37,12 +37,12 @@ h2, h3, h4, h5 {
 /* standard links */
 a, a:visited {
     text-decoration: none;
-    color: #b16286;
+    color: #a1b56c;
 }
 
 a:hover {
-    text-decoration: underline dotted;
-    color: #b16286;
+    text-decoration: underline;
+    color: #a1b56c;
 }
 
 /* navigation  bar */
@@ -52,15 +52,15 @@ nav {
 }
 
 nav a, nav a:visited {
-    color: #111111;
+    color: #585858;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2em;
     text-decoration: none;
 }
 
 nav a:hover {
-    color: #98971a;
-    text-decoration: none;
+    color: #585858;
+    text-decoration: underline;
 }
 
 /* Special blog related CSS */
@@ -68,14 +68,14 @@ nav a:hover {
 .author {
     text-decoration: none;
     text-align: center;
-    color: #b16286;
-    font-size: 1.5em;
+    color: #585858;
+    font-size: 1.2em;
 }
 
 .date {
     text-decoration: none;
     text-align: center;
-    color: #689d6a;
+    color: #585858;
     font-size: 1.2em;
 }
 

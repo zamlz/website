@@ -1,13 +1,13 @@
 
 ---
-title: Z A M L Z
+title: Amlesh Sivanantham (zamlz)
 css:
   - "https://fonts.googleapis.com/css?family=EB+Garamond"
   - "/style.css"
 ---
 
-<img class="profile" src="/profile.png"/>
+<!-- <img class="profile" src="/profile.png"/> -->
 
-Welcome to the website of Amlesh Sivanantham.
+Welcome to my personal website.
 
 **Currently Under Construction!**
