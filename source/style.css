@@ -8,7 +8,8 @@ body {
     max-width: 50em;
     margin: auto;
     padding: 1em 4%;
-    background: #181818;
+    background-image: url("/grid.png");
+    background-repeat: repeat;
     color: #d8d8d8;
 }
 
