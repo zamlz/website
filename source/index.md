@@ -13,7 +13,7 @@ and more notes, it is simplicity that emerges as the crowning reward of art."
 - Frédéric Chopin</i>
 </div>
 
-I'm a Computer Science Masters Student at USC.  
+I'm a Computer Science Masters Student at USC.<br>
 I spend alot of time thinking about these things:
 
 + Artificial Intelligence
