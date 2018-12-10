@@ -92,3 +92,14 @@ img {
     margin-right: auto;
     width: 15em;
 }
+
+pre {
+    /* background-color: #282828; */
+    /* color: #d8d8d8; */
+    font-size: 0.80em;
+    /* border: 1px solid #eee; */
+    /* border-radius: 4px; */
+    /* padding: 10px; */
+    overflow-x: auto;
+    overflow-y: hidden;
+}

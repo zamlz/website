@@ -1,9 +1,9 @@
-# __  __       _         __ _ _      
-#|  \/  | __ _| | _____ / _(_) | ___ 
+# __  __       _         __ _ _
+#|  \/  | __ _| | _____ / _(_) | ___
 #| |\/| |/ _` | |/ / _ \ |_| | |/ _ \
 #| |  | | (_| |   <  __/  _| | |  __/
 #|_|  |_|\__,_|_|\_\___|_| |_|_|\___|
-#                                    
+#
 
 ########################################################
 
@@ -11,7 +11,7 @@ MAKEARGS	= -C
 
 PAGES		= index.html \
 			  contact/index.html
-			  
+
 BLOG		= blog/index.html
 BLOGMD		= blog/bloglist.tmp
 
@@ -24,7 +24,8 @@ FOOTER		= .footer.html
 MDHTML		= 	-f markdown -t html -s \
 				--template=${TEMPLATE} \
 				--include-before=${HEADER} \
-				--include-after=${FOOTER}
+				--include-after=${FOOTER} \
+				--highlight-style=breezedark
 
 ########################################################
 

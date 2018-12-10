@@ -1,9 +1,9 @@
-# __  __       _         __ _ _      
-#|  \/  | __ _| | _____ / _(_) | ___ 
+# __  __       _         __ _ _
+#|  \/  | __ _| | _____ / _(_) | ___
 #| |\/| |/ _` | |/ / _ \ |_| | |/ _ \
 #| |  | | (_| |   <  __/  _| | |  __/
 #|_|  |_|\__,_|_|\_\___|_| |_|_|\___|
-#                                    
+#
 
 ########################################################
 
@@ -21,10 +21,16 @@ PRDIR		= $(shell echo ${POSTSRAW} | sed -e 's/_/\//g')
 POSTSHTML	= ${PRDIR:.tmp=.html}
 
 BUILDER		= ./build.sh
+
+TEMPLATE	= ../.template.html
+HEADER		= ../.header.html
+FOOTER		= ../.footer.html
+
 MDHTML		= 	-f markdown -t html -s \
-				--template=../.template.html \
-				--include-before=../.header.html \
-				--include-after=../.footer.html
+				--template=${TEMPLATE} \
+				--include-before=${HEADER} \
+				--include-after=${FOOTER} \
+				--highlight-style=breezedark
 
 ########################################################
 
@@ -35,7 +41,7 @@ ${BLOGMD}: tmpbuild ${POSTSHTML} ${TOPMD} ${BUILDER}
 # How to build the real html files
 %.html: %.tmp
 	@mv -v $< $@
-	
+
 
 # Build the tmp files
 tmpbuild: ${POSTSRAW}
@@ -43,10 +49,10 @@ tmpbuild: ${POSTSRAW}
 		newtmp=$$(echo $$tmppost | sed -e s'/_/\//g'); \
 		mkdir -p $$(dirname $$newtmp); \
 		cp -v $$tmppost $$newtmp; \
-	done; 
+	done;
 
 # How to build all the tmp html files
-%.tmp : %.md
+%.tmp : %.md ${TEMPLATE} ${HEADER} ${FOOTER} ${CODESTYLE}
 	pandoc $< ${MDHTML} -o $@
 
 # Remove the html files
