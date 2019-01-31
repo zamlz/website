@@ -1,3 +1,6 @@
 
 # This means post is a draft
 *.draft.md
+
+# Ignore the resume directory thats created here
+.__resume__/

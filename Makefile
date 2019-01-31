@@ -17,15 +17,25 @@ INSTALL_DIR	= /var/www/html/zamlz.org/public_html
 ADDRESS		= 127.0.0.1
 PORT		= 8000
 
+RESUME_DIR	= .__resume__
+RESUME_URL	= https://github.com/zamlz/resume.git
+
 ########################################################
 
 # Builds the html files
-build:
+build: resume
 	+${MAKE} ${MAKEARGS} ${SOURCE_DIR}
 
 # Clean up after the builder
 clean:
 	+${MAKE} ${MAKEARGS} ${SOURCE_DIR} clean
+
+# This builds the resume file.
+resume:
+	if [ -d "${RESUME_DIR}" ]; \
+	then git -C ${RESUME_DIR} pull; \
+	else git clone ${RESUME_URL} ${RESUME_DIR}; fi;
+	+${MAKE} -C ${RESUME_DIR}
 
 # This will unencrypt the drafts
 unlock:
