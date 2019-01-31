@@ -5,17 +5,24 @@ css:
   - "/style.css"
 ---
 
-<!-- <img class="profile" src="/profile.png"/> -->
+<img class="profile" src="/profile.jpg"/>
 
+<!--
 <div style="color:#ba8baf;font-size:0.8em" align="center">
 <i>"Simplicity is the final achievement. After one has played quantity of notes
 and more notes, it is simplicity that emerges as the crowning reward of art."
 - Frédéric Chopin</i>
 </div>
+-->
 
 I'm a Computer Science Masters Student at USC.<br>
 I spend alot of time thinking about these things:
 
 + Artificial Intelligence
-+ Machine Learning
++ Machine Learning / Reinforcement Learning
 + Linux
+
+Here is my [resume](./resume_amlesh_sivanantham.pdf) if you're intersted.
+
+This site doesn't really having anything except a link to my GitHub profile.
+Hopefully that will change in the future.
