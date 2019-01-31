@@ -24,8 +24,8 @@ FOOTER		= .footer.html
 MDHTML		= 	-f markdown -t html -s \
 				--template=${TEMPLATE} \
 				--include-before=${HEADER} \
-				--include-after=${FOOTER} \
-				--highlight-style=breezedark
+				--include-after=${FOOTER}
+				#--highlight-style=breezedark
 
 RESUME_FILE	= resume_amlesh_sivanantham.pdf
 RESUME_SRC	= ../.__resume__/amlesh_curriculum_vitae.pdf
