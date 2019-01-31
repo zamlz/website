@@ -29,8 +29,8 @@ FOOTER		= ../.footer.html
 MDHTML		= 	-f markdown -t html -s \
 				--template=${TEMPLATE} \
 				--include-before=${HEADER} \
-				--include-after=${FOOTER} \
-				--highlight-style=breezedark
+				--include-after=${FOOTER}
+				#--highlight-style=breezedark
 
 ########################################################
 
