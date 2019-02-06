@@ -2,5 +2,10 @@
 # This means post is a draft
 *.draft.md
 
+# This are build files
+*.html
+*.tmp
+*.pdf
+
 # Ignore the resume directory thats created here
 .__resume__/
