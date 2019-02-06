@@ -9,18 +9,18 @@ if [ -z "$1" ] || [ -z "$2" ]; then
     exit 1
 fi
 
-echo "=========================================="
+echo "======================================================"
 echo "Source Directory  : ${SOURCE_DIR}"
 echo "Install Directory : ${INSTALL_DIR}"
-echo "=========================================="
+echo "======================================================"
 echo "rm -rfv ${INSTALL_DIR}"
 rm -rfv ${INSTALL_DIR}
-echo "=========================================="
+echo "======================================================"
 
 # Push a specific type of file to the install directory
 # $1 file type
 install () {
-   
+
     if [ -z "$(find ${SOURCE_DIR} -type f -name "${1}" | grep -v '/\.')" ]; then
         echo "Warning: No files of type '${1}' are available. Make sure you run 'make build'";
     fi

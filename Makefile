@@ -24,6 +24,7 @@ RESUME_URL	= https://github.com/zamlz/resume.git
 
 # Builds the html files
 build: resume
+	@echo "================== BUILDING WEBSITE =================="
 	+${MAKE} ${MAKEARGS} ${SOURCE_DIR}
 
 # Clean up after the builder
@@ -32,6 +33,7 @@ clean:
 
 # This builds the resume file.
 resume:
+	@echo "================== BUILDING RESUME ==================="
 	if [ -d "${RESUME_DIR}" ]; \
 	then git -C ${RESUME_DIR} pull; \
 	else git clone ${RESUME_URL} ${RESUME_DIR}; fi;
@@ -39,18 +41,22 @@ resume:
 
 # This will unencrypt the drafts
 unlock:
+	@echo "================== UNLOCKING DRAFTS =================="
 	./crypt.sh unlock ${SOURCE_DIR}
 
 # This will encrypt the drafts
 lock: clean
+	@echo "=================== LOCKING DRAFTS ==================="
 	./crypt.sh lock ${SOURCE_DIR}
 
 # Test the system locally
 test:
+	@echo "================ STARTING TEST SERVER ================"
 	./server.sh ${SOURCE_DIR} ${ADDRESS} ${PORT}
 
 # Install to the server folder (notice the lock)
 install: clean lock build
+	@echo "================= INSTALLING WEBSITE ================="
 	./install.sh ${SOURCE_DIR} ${INSTALL_DIR}
 
 ########################################################
