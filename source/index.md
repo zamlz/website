@@ -3,6 +3,7 @@
 title: Amlesh Sivanantham (zamlz)
 css:
   - "/style.css"
+  - "https://fonts.googleapis.com/css?family=Karla"
 ---
 
 <img class="profile" src="/profile.jpg"/>

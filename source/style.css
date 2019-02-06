@@ -1,16 +1,16 @@
 
 /* Body stuff */
 body {
-    font-family: 'Lucida Console', Monaco, monospace;
+    font-family: 'Karla', 'sans-serif', 'Lucida Console', Monaco, monospace;
     /* font-family: 'EB Garamond'; */
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
     padding: 1em 4%;
-    background-image: url("/grid.png");
-    background-repeat: repeat;
-    color: #d8d8d8;
+    /* background-image: url("/grid.png"); */
+    /* background-repeat: repeat; */
+    color: #585858;
 }
 
 /* center the header */
@@ -24,7 +24,7 @@ h1 {
 
 h2, h3, h4, h5 {
     text-decoration: underline;
-    color: #d8d8d8;
+    color: #458588;
     font-weight: bold;
 }
 
@@ -38,12 +38,12 @@ h2, h3, h4, h5 {
 /* standard links */
 a, a:visited {
     text-decoration: none;
-    color: #a1b56c;
+    color: #b16286;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #a1b56c;
+    color: #689d6a;
 }
 
 /* navigation  bar */
@@ -66,19 +66,14 @@ nav a:hover {
 
 /* Special blog related CSS */
 /* hides the author */
-.author {
+.author-date {
     text-decoration: none;
     text-align: center;
     color: #585858;
-    font-size: 1.2em;
+    font-size: 1.0em;
+    font-weight: lighter;
 }
 
-.date {
-    text-decoration: none;
-    text-align: center;
-    color: #585858;
-    font-size: 1.2em;
-}
 
 img {
     display: block;
