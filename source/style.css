@@ -1,23 +1,26 @@
 
 /* Body stuff */
 body {
-    font-family: 'Karla', 'sans-serif', 'Lucida Console', Monaco, monospace;
+    font-family: 'Open Sans', 'sans-serif', 'Lucida Console', Monaco, monospace;
     /* font-family: 'EB Garamond'; */
     font-size: 20px;
     line-height: 1.4em;
     max-width: 50em;
     margin: auto;
     padding: 1em 4%;
-    /* background-image: url("/grid.png"); */
-    /* background-repeat: repeat; */
-    color: #585858;
+    color: #FFFFFF;
+    /*background-color: #000000;*/
+    background-image: url("/grid.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
 /* center the header */
 h1 {
-    font-size: 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
     text-align: center;
-    color: #7cafc2;
+    color: #FFFFFF;
     font-weight: normal;
     line-height: 1em;
 }
@@ -38,12 +41,11 @@ h2, h3, h4, h5 {
 /* standard links */
 a, a:visited {
     text-decoration: none;
-    color: #b16286;
+    color: #98971a;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #689d6a;
 }
 
 /* navigation  bar */
@@ -53,14 +55,15 @@ nav {
 }
 
 nav a, nav a:visited {
-    color: #585858;
+    color: #FFFFFF;
     text-align: center;
     font-size: 1.2em;
     text-decoration: none;
+    font-family: 'Playfair Display', serif;
 }
 
 nav a:hover {
-    color: #585858;
+    color: #FFFFFF;
     text-decoration: underline;
 }
 
