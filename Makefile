@@ -18,7 +18,7 @@ ADDRESS		= 127.0.0.1
 PORT		= 8000
 
 RESUME_DIR	= .__resume__
-RESUME_URL	= https://github.com/zamlz/resume.git
+RESUME_URL	= https://gitlab.com/zamlz/resume.git
 
 ########################################################
 
