@@ -59,5 +59,13 @@ install: clean lock build
 	@echo "================= INSTALLING WEBSITE ================="
 	./install.sh ${SOURCE_DIR} ${INSTALL_DIR}
 
+infinity: clean lock
+	@echo "================ CONTINUOUS UPAGRADE ================="
+	while true; do \
+		+${MAKE} ${MAKEARGS} ./ build; \
+		+${MAKE} ${MAKEARGS} ./ install; \
+		sleep 3600; \
+	done;
+
 ########################################################
 
