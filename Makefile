@@ -62,8 +62,8 @@ install: clean lock build
 infinity: clean lock
 	@echo "================ CONTINUOUS UPAGRADE ================="
 	while true; do \
-		+${MAKE} ${MAKEARGS} ./ build; \
-		+${MAKE} ${MAKEARGS} ./ install; \
+		make build; \
+		make install; \
 		sleep 3600; \
 	done;
 
