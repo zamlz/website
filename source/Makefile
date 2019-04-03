@@ -27,13 +27,13 @@ MDHTML		= 	-f markdown -t html -s \
 				--include-after=${FOOTER}
 				#--highlight-style=breezedark
 
-RESUME_FILE	= resume_amlesh_sivanantham.pdf
-RESUME_SRC	= ../.__resume__/amlesh_curriculum_vitae.pdf
+RESUME_SRC	= ../.__resume__/amlesh_resume.pdf
+CV_SRC     	= ../.__resume__/amlesh_curriculum_vitae.pdf
 
 ########################################################
 
 # Specify all the files that we build here
-all: ${PAGES} ${BLOG} ${RESUME_FILE}
+all: ${PAGES} ${BLOG} resume 
 
 # How to build all the html files
 %.html : %.md ${TEMPLATE} ${HEADER} ${FOOTER}
@@ -47,8 +47,9 @@ ${BLOG}: blogupdate ${BLOGMD} ${TEMPLATE} ${HEADER} ${FOOTER}
 blogupdate:
 	+${MAKE} ${MAKEARGS} ${BLOG_DIR}
 
-${RESUME_FILE}: ${RESUME_SRC}
-	cp ${RESUME_SRC} ${RESUME_FILE}
+resume: ${RESUME_SRC} ${CV_SRC}
+	cp ${RESUME_SRC} ./
+	cp ${CV_SRC} ./
 
 # Remove the html files and any other files
 clean:
