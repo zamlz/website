@@ -1,8 +1,8 @@
 
 ---
-title: BLOG
+title: Blog
 css:
   - "/style.css"
-  - "https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display"
+  - "https://fonts.googleapis.com/css?family=EB+Garamond"
 ---
 

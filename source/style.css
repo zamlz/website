@@ -3,32 +3,33 @@
 body {
     font-family: 'Open Sans', 'sans-serif', 'Lucida Console', Monaco, monospace;
     /* font-family: 'EB Garamond'; */
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.4em;
-    max-width: 50em;
+    max-width: 80em;
     margin: auto;
     padding: 1em 4%;
-    color: #FFFFFF;
-    /*background-color: #000000;*/
-    background-image: url("/grid.png");
+    color: #000000;
+    background-color: #FFFFFF;
+    /* background-image: url("/grid.png");
     background-repeat: repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; */
 }
 
 /* center the header */
 h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garmond', serif;
     font-size: 60px;
     text-align: center;
-    color: #FFFFFF;
+    color: #000000;
     font-weight: normal;
     line-height: 1em;
 }
 
 h2, h3, h4, h5 {
-    text-decoration: underline;
-    color: #458588;
-    font-weight: bold;
+    font-family: 'EB Garmond', serif;
+    text-decoration: underline dotted;
+    color: #000000;
+    font-weight: normal;
 }
 
 /* Make the inner content padded */
@@ -41,7 +42,7 @@ h2, h3, h4, h5 {
 /* standard links */
 a, a:visited {
     text-decoration: none;
-    color: #98971a;
+    color: #4585FF;
 }
 
 a:hover {
@@ -55,15 +56,15 @@ nav {
 }
 
 nav a, nav a:visited {
-    color: #FFFFFF;
+    color: #000000;
     text-align: center;
     font-size: 1.2em;
     text-decoration: none;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Open Sans';
 }
 
 nav a:hover {
-    color: #FFFFFF;
+    color: #000000;
     text-decoration: underline;
 }
 
@@ -89,16 +90,23 @@ img {
     margin-left: auto;
     margin-right: auto;
     width: 15em;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 pre {
-    /* background-color: #282828; */
-    /* color: #d8d8d8; */
-    font-size: 0.80em;
-    /* border: 1px solid #eee; */
-    /* border-radius: 4px; */
-    /* padding: 10px; */
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
     overflow-x: auto;
     overflow-y: hidden;
+}
+
+code {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 0.80em;
+    padding: 2px;
 }

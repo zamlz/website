@@ -27,6 +27,7 @@ HEADER		= ../.header.html
 FOOTER		= ../.footer.html
 
 MDHTML		= 	-f markdown -t html -s \
+				--mathjax \
 				--template=${TEMPLATE} \
 				--include-before=${HEADER} \
 				--include-after=${FOOTER}
