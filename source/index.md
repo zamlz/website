@@ -1,6 +1,6 @@
 
 ---
-title: "zamlz :: Amlesh Sivanantham"
+title: "Amlesh Sivanantham :: zamlz"
 css:
   - "/style.css"
   - "https://fonts.googleapis.com/css?family=EB+Garamond"
@@ -29,5 +29,5 @@ Here is my [resume](./amlesh_resume.pdf) if you're intersted.
 This site doesn't really having anything except a link to my GitHub profile.
 Hopefully that will change in the future.
 
-[USC]: https://www.usc.edu/ 
-[RESL]: https://robotics.usc.edu/resl/ 
+[USC]: https://www.usc.edu/
+[RESL]: https://robotics.usc.edu/resl/
