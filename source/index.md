@@ -6,7 +6,7 @@ css:
   - "https://fonts.googleapis.com/css?family=EB+Garamond"
 ---
 
-<img class="profile" src="/spaceman.png"/>
+<img class="profile" src="/profile.jpg"/>
 <!--
 <div style="color:#ba8baf;font-size:0.8em" align="center">
 <i>"Simplicity is the final achievement. After one has played quantity of notes
