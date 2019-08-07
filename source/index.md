@@ -15,7 +15,9 @@ and more notes, it is simplicity that emerges as the crowning reward of art."
 </div>
 -->
 
-I'm a Computer Science Masters Student at the
+I am currently a NLP Engineer at Wells Fargo.
+
+I was formerly a Computer Science Masters Student at the
 [Robotic Embedded Systems Laboratory][RESL]
 at the [University of Southern California][USC].
 I spend alot of time thinking about these things:
