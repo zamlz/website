@@ -20,9 +20,9 @@ unlock() {
     done
 }
 
-if [ "$1" == "lock" ]; then
+if [ "$1" = "lock" ]; then
     lock
-elif [ "$1" == "unlock" ]; then
+elif [ "$1" = "unlock" ]; then
     unlock
 else
     find ${SOURCE_DIR} -type f -name "*.gpg"
