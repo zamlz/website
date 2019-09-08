@@ -14,7 +14,7 @@ MAKEARGS	= -C
 SOURCE_DIR	= source
 INSTALL_DIR	= /var/www/html/zamlz.org/public_html
 
-ADDRESS		= 127.0.0.1
+ADDRESS		= 0.0.0.0
 PORT		= 8000
 
 RESUME_DIR	= .__resume__
