@@ -22,8 +22,10 @@ RESUME_URL	= https://gitlab.com/zamlz/resume.git
 
 ########################################################
 
+build: resume website
+
 # Builds the html files
-build: resume
+website:
 	@echo "================== BUILDING WEBSITE =================="
 	+${MAKE} ${MAKEARGS} ${SOURCE_DIR}
 
@@ -59,12 +61,11 @@ install: clean lock build
 	@echo "================= INSTALLING WEBSITE ================="
 	./install.sh ${SOURCE_DIR} ${INSTALL_DIR}
 
-infinity: clean lock
-	@echo "================ CONTINUOUS UPAGRADE ================="
+build-forever: 
+	@echo "================ CONTINUOUS BUILDING ================="
 	while true; do \
-		make build; \
-		make install; \
-		sleep 3600; \
+		make website; \
+		sleep 1; \
 	done;
 
 ########################################################
