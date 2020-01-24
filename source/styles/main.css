@@ -1,0 +1,51 @@
+a:link { color: #293145; border-bottom: solid thin #293145; }
+a:visited { color: #666; border-bottom: dotted thin #666; }
+a:hover { color: #666; border-bottom: dotted thin #666; }
+a:active { color: #fff; border-bottom: none; }
+a { text-decoration: none; }
+
+body {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 40em;
+    max-width: 800px;
+    border: thin solid #888;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+h2, .heading, .name {
+    color: #293145;
+}
+
+.heading, .name {
+    margin: 0;
+    text-align: right;
+}
+
+.name {
+    font-size: 250%;
+    font-weight: bold;
+}
+
+.me {
+    font-weight: bold;
+    font-style: inherit;
+}
+
+.bibliography {
+    margin-left: 2em;
+    text-indent: -2em;
+}
+
+.profile {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15em;
+    border-radius: 10%;
+}
+

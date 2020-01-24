@@ -1,8 +1,10 @@
 
 ---
-title: Blog
+title: My collection of Random Thoughts and Stuff...
 css:
-  - "/style.css"
-  - "https://fonts.googleapis.com/css?family=EB+Garamond"
+  - "/styles/main.css"
 ---
+
+All Articles
+------------
 

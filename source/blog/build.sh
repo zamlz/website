@@ -12,19 +12,27 @@ fi
 
 # Continue onward
 
-# find luckilu prints output in the order I need them in
-postlist=$(find ${POST_DIR} -type f -name "*.html")
+# find posts and sort them
+postlist=$(find ${POST_DIR} -type f -name "*.html" | sort -r)
 echo ""
+
+CUR_YEAR=""
 
 for post in ${postlist}; do
 
     url="/blog/${post}"
 
-    day=$(echo ${post} | sed -e 's/\// /g' | awk '{print $2}')
+    full_date=$(echo ${post} | sed -e 's/\// /g' | awk '{print $2}')
+    year=$(echo ${full_date} | grep -o "^[^-]*")
 
-    name=$(grep 'class="title"' ${post} | sed -e 's/class="title"//g')
+    if [ "$year" != "$CUR_YEAR" ]; then
+        echo -e "\n" "<h3>$year</h3>"
+        CUR_YEAR=$year
+    fi
+
+    name=$(grep 'class="name"' ${post} | sed -e 's/class="title"//g')
     name=$(echo ${name} | pandoc -f html -t commonmark)
     name=$(echo ${name} | sed -e 's/# //')
 
-    echo " - ${day} - [${name}](${url})"
+    echo " - [${name}](${url}) [$full_date]"
 done
