@@ -44,24 +44,24 @@ resume:
 # This will unencrypt the drafts
 unlock:
 	@echo "================== UNLOCKING DRAFTS =================="
-	./crypt.sh unlock ${SOURCE_DIR}
+	./scripts/crypt.sh unlock ${SOURCE_DIR}
 
 # This will encrypt the drafts
 lock: clean
 	@echo "=================== LOCKING DRAFTS ==================="
-	./crypt.sh lock ${SOURCE_DIR}
+	./scripts/crypt.sh lock ${SOURCE_DIR}
 
 # Test the system locally
 test:
 	@echo "================ STARTING TEST SERVER ================"
-	./server.sh ${SOURCE_DIR} ${ADDRESS} ${PORT}
+	./scripts/server.sh ${SOURCE_DIR} ${ADDRESS} ${PORT}
 
 # Install to the server folder (notice the lock)
 install: clean lock build
 	@echo "================= INSTALLING WEBSITE ================="
-	./install.sh ${SOURCE_DIR} ${INSTALL_DIR}
+	./scripts/install.sh ${SOURCE_DIR} ${INSTALL_DIR}
 
-build-forever: 
+build-forever:
 	@echo "================ CONTINUOUS BUILDING ================="
 	while true; do \
 		make website; \
