@@ -26,7 +26,7 @@ for post in ${postlist}; do
     year=$(echo ${full_date} | grep -o "^[^-]*")
 
     if [ "$year" != "$CUR_YEAR" ]; then
-        echo -e "\n" "<h3>$year</h3>"
+        echo "<h3>$year</h3>"
         CUR_YEAR=$year
     fi
 
