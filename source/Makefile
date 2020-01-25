@@ -9,8 +9,7 @@
 
 MAKEARGS	= -C
 
-PAGES		= index.html \
-			  contact/index.html
+PAGES		= index.html
 
 BLOG		= blog/index.html
 BLOGMD		= blog/bloglist.tmp
