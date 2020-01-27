@@ -5,13 +5,11 @@
 #|_|  |_|\__,_|_|\_\___|_| |_|_|\___|
 #
 
-########################################################
+###############################################################################
 
-README   	= README
-MKFILE   	= Makefile
-MAKEARGS	= -C
+# GENERAL MAKE VARIABLES
 
-SOURCE_DIR	= source
+SOURCE_DIR	= ./source
 INSTALL_DIR	= /var/www/html/zamlz.org/public_html
 
 ADDRESS		= 0.0.0.0
@@ -20,18 +18,14 @@ PORT		= 8000
 RESUME_DIR	= .__resume__
 RESUME_URL	= https://gitlab.com/zamlz/resume.git
 
-########################################################
+PANDOC      = pandoc -f markdown -t html
 
-build: resume website
+###############################################################################
 
 # Builds the html files
-website:
+build: resume
 	@echo "================== BUILDING WEBSITE =================="
-	+${MAKE} ${MAKEARGS} ${SOURCE_DIR}
-
-# Clean up after the builder
-clean:
-	+${MAKE} ${MAKEARGS} ${SOURCE_DIR} clean
+	+${MAKE} website
 
 # This builds the resume file.
 resume:
@@ -68,5 +62,34 @@ build-forever:
 		sleep 1; \
 	done;
 
-########################################################
+###############################################################################
 
+# WEBSITE MAKE VARIABLES
+
+# Directories
+BLOG_DIR = ${SOURCE_DIR}/blog
+BLOG_POST_DIR = ${BLOG_DIR}/posts
+
+# Markdown Files
+MAIN_PAGE = ${SOURCE_DIR}/index.md
+BLOG_TEMP = ${BLOG_DIR}/index.md
+TIME_PAGE = source/blog/chronological.md
+TAGS_PAGE = source/blog/tags.md
+BLOG_PAGE = $(shell find ${BLOG_POST_DIR} -type f -name "*.md")
+
+# HTML Files
+MAIN_HTML = ${MAIN_PAGE:.md=.html}
+TIME_HTML = ${TIME_PAGE:.md=.html}
+TAGS_HTML = ${TAGS_PAGE:.md=.html}
+BLOG_HTML = ${BLOG_PAGE:.md=.html}
+
+###############################################################################
+
+website: ${MAIN_HTML} # ${CHRONO_HTML} ${TAGS_HTML}
+
+%.html: %.md
+	${PANDOC} $< -o $@
+
+# Clean up after the builder
+clean:
+	echo test

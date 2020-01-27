@@ -5,6 +5,5 @@ css:
   - "/styles/main.css"
 ---
 
-All Articles
-------------
+*Ordering:* [ [ timestamp ]() ] [ [ tags]() ]
 

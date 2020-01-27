@@ -32,7 +32,7 @@ CV_SRC     	= ../.__resume__/amlesh_curriculum_vitae.pdf
 ########################################################
 
 # Specify all the files that we build here
-all: ${PAGES} ${BLOG} resume 
+all: ${PAGES} ${BLOG} resume
 
 # How to build all the html files
 %.html : %.md ${TEMPLATE} ${HEADER} ${FOOTER}
@@ -47,8 +47,8 @@ blogupdate:
 	+${MAKE} ${MAKEARGS} ${BLOG_DIR}
 
 resume: ${RESUME_SRC} ${CV_SRC}
-	cp ${RESUME_SRC} ./
-	cp ${CV_SRC} ./
+	cp ${RESUME_SRC} ./resources/
+	cp ${CV_SRC} ./resources/
 
 # Remove the html files and any other files
 clean:
