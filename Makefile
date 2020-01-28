@@ -9,7 +9,7 @@
 
 # GENERAL MAKE VARIABLES
 
-SOURCE_DIR	= ./source
+SOURCE_DIR	= source
 INSTALL_DIR	= /var/www/html/zamlz.org/public_html
 
 ADDRESS		= 0.0.0.0
