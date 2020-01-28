@@ -18,8 +18,6 @@ PORT		= 8000
 RESUME_DIR	= .__resume__
 RESUME_URL	= https://gitlab.com/zamlz/resume.git
 
-PANDOC      = pandoc -f markdown -t html
-
 ###############################################################################
 
 # Builds the html files
@@ -66,30 +64,49 @@ build-forever:
 
 # WEBSITE MAKE VARIABLES
 
+# Build dependencies
+PANDOC      = pandoc -f markdown -t html
+PD_TEMPLATE = source/.template.html
+
 # Directories
 BLOG_DIR = ${SOURCE_DIR}/blog
 BLOG_POST_DIR = ${BLOG_DIR}/posts
 
 # Markdown Files
-MAIN_PAGE = ${SOURCE_DIR}/index.md
-BLOG_TEMP = ${BLOG_DIR}/index.md
-TIME_PAGE = source/blog/chronological.md
-TAGS_PAGE = source/blog/tags.md
-BLOG_PAGE = $(shell find ${BLOG_POST_DIR} -type f -name "*.md")
+MAIN_MD = ${SOURCE_DIR}/index.md
+BLOG_MD = ${BLOG_DIR}/index.md
+TIME_MD = source/blog/posts.md
+TAGS_MD = source/blog/tags.md
+POST_MD = $(shell find ${BLOG_POST_DIR} -type f -name "*.md")
 
 # HTML Files
-MAIN_HTML = ${MAIN_PAGE:.md=.html}
-TIME_HTML = ${TIME_PAGE:.md=.html}
-TAGS_HTML = ${TAGS_PAGE:.md=.html}
-BLOG_HTML = ${BLOG_PAGE:.md=.html}
+MAIN_HTML = ${MAIN_MD:.md=.html}
+TIME_HTML = ${TIME_MD:.md=.html}
+TAGS_HTML = ${TAGS_MD:.md=.html}
+POST_HTML = ${POST_MD:.md=.html}
 
 ###############################################################################
 
-website: ${MAIN_HTML} # ${CHRONO_HTML} ${TAGS_HTML}
+# Builds all components of the website
+website: ${MAIN_HTML} ${TIME_HTML} ${TAGS_HTML} ${POST_HTML}
 
-%.html: %.md
-	${PANDOC} $< -o $@
+# Blog posts page ordered by time
+${TIME_MD}: ${BLOG_MD} ${POST_MD}
+	./scripts/make_blog.py --time $^ > $@
+
+# Blog posts page grouped by tags
+${TAGS_MD}: ${BLOG_MD} ${POST_MD}
+	./scripts/make_blog.py --tags $^ > $@
+
+# General build procedure for html files
+%.html: %.md ${PD_TEMPLATE}
+	${PANDOC} $< -o $@ --template=${PD_TEMPLATE}
 
 # Clean up after the builder
 clean:
-	echo test
+	-rm ${MAIN_HTML}
+	-rm ${POST_HTML}
+	-rm ${TIME_HTML}
+	-rm ${TAGS_HTML}
+	-rm ${TIME_MD}
+	-rm ${TAGS_MD}

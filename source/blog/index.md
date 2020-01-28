@@ -5,5 +5,5 @@ css:
   - "/styles/main.css"
 ---
 
-*Ordering:* [ [ timestamp ]() ] [ [ tags]() ]
+*Ordering:* [ [ timestamp ](/blog/posts.html) ] [ [ tags](/blog/tags.html) ]
 
