@@ -1,6 +1,8 @@
 
 # This means post is a draft
 *.draft.md
+source/blog/posts.md
+source/blog/tags.md
 
 # This are build files
 *.html

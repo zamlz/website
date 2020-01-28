@@ -37,11 +37,11 @@ if mode == '--time':
         time_map[year] += [PostInfo(date, title, url)]
 
     for year in sorted(time_map.keys(), reverse=True):
-        print(f"\n### {year}\n")
+        print("\n### " + str(year) + "\n")
 
         for p in sorted(time_map[year], reverse=True, key=lambda p: p.date):
             small_date = p.date.strftime('%Y-%m-%d')
-            print(f'- [{p.title}]({p.url}) [{small_date}]')
+            print('- [' + p.title + '](' + p.url + ') [' + small_date + ']')
 
 elif mode == '--tags':
 
