@@ -9,29 +9,21 @@
 
 # GENERAL MAKE VARIABLES
 
-SOURCE_DIR	= source
+SOURCE_DIR  = source
+DATA_DIR    = ${SOURCE_DIR}/data
 INSTALL_DIR	= /var/www/html/zamlz.org/public_html
 
-ADDRESS		= 0.0.0.0
-PORT		= 8000
-
-RESUME_DIR	= .__resume__
-RESUME_URL	= https://gitlab.com/zamlz/resume.git
+ADDRESS     = 0.0.0.0
+PORT        = 8000
 
 ###############################################################################
 
 # Builds the html files
-build: resume
+build:
+	@echo "================== BUILDING RESUME ==================="
+	+${MAKE} resume
 	@echo "================== BUILDING WEBSITE =================="
 	+${MAKE} website
-
-# This builds the resume file.
-resume:
-	@echo "================== BUILDING RESUME ==================="
-	if [ -d "${RESUME_DIR}" ]; \
-	then git -C ${RESUME_DIR} pull; \
-	else git clone ${RESUME_URL} ${RESUME_DIR}; fi;
-	+${MAKE} -C ${RESUME_DIR}
 
 # This will unencrypt the drafts
 unlock:
@@ -102,11 +94,57 @@ ${TAGS_MD}: ${BLOG_MD} ${POST_MD}
 %.html: %.md ${PD_TEMPLATE}
 	${PANDOC} $< -o $@ --template=${PD_TEMPLATE}
 
+###############################################################################
+
+# RESUME MAKE VARIABLES
+
+RESUME_DIR  = .__resume__
+RESUME_URL  = https://gitlab.com/zamlz/resume.git
+
+RESUME_FILE = amlesh_resume.pdf
+RESUME_SRC  = ${RESUME_DIR}/${RESUME_FILE}
+RESUME_TAR  = ${DATA_DIR}/${RESUME_FILE}
+
+CV_FILE     = amlesh_curriculum_vitae.pdf
+CV_SRC      = ${RESUME_DIR}/${CV_FILE}
+CV_TAR      = ${DATA_DIR}/${CV_FILE}
+
+###############################################################################
+
+# This builds the resume file.
+resume: resume_update ${RESUME_TAR} ${CV_TAR}
+
+# Build resume using original source files
+resume_update:
+	if [ -d "${RESUME_DIR}" ]; \
+	then git -C ${RESUME_DIR} pull; \
+	else git clone ${RESUME_URL} ${RESUME_DIR}; fi;
+	+${MAKE} -C ${RESUME_DIR}
+
+${RESUME_TAR}: ${RESUME_SRC}
+	cp ${RESUME_SRC} ${RESUME_TAR}
+
+${CV_TAR}: ${CV_SRC}
+	cp ${CV_SRC} ${CV_TAR}
+
+###############################################################################
+
 # Clean up after the builder
 clean:
+	-rm ${RESUME_TAR}
+	-rm ${CV_TAR}
 	-rm ${MAIN_HTML}
 	-rm ${POST_HTML}
 	-rm ${TIME_HTML}
 	-rm ${TAGS_HTML}
 	-rm ${TIME_MD}
 	-rm ${TAGS_MD}
+
+###############################################################################
+
+.FORCE:
+	touch .FORCE
+
+.PHONY = ${RESUME_SRC} ${CV_SRC} website resume clean build \
+         lock unlock test install build-forever
+
