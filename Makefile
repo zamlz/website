@@ -142,9 +142,6 @@ clean:
 
 ###############################################################################
 
-.FORCE:
-	touch .FORCE
-
 .PHONY = ${RESUME_SRC} ${CV_SRC} website resume clean build \
          lock unlock test install build-forever
 
