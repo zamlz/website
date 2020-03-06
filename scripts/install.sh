@@ -14,7 +14,7 @@ echo "Source Directory  : ${SOURCE_DIR}"
 echo "Install Directory : ${INSTALL_DIR}"
 echo "======================================================"
 echo "rm -rfv ${INSTALL_DIR}"
-rm -rfv ${INSTALL_DIR}
+rm -rfv ${INSTALL_DIR}/*
 echo "======================================================"
 
 # Push a specific type of file to the install directory

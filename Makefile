@@ -11,7 +11,7 @@
 
 SOURCE_DIR  = source
 DATA_DIR    = ${SOURCE_DIR}/data
-INSTALL_DIR	= /var/www/html/zamlz.org/public_html
+INSTALL_DIR	= /var/www/zamlz.org
 
 ADDRESS     = 0.0.0.0
 PORT        = 8000
