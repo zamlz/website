@@ -99,7 +99,7 @@ ${TAGS_MD}: ${BLOG_MD} ${POST_MD}
 # RESUME MAKE VARIABLES
 
 RESUME_DIR  = .__resume__
-RESUME_URL  = https://gitlab.com/zamlz/resume.git
+RESUME_URL  = https://git.zamlz.org/resume.git
 
 RESUME_FILE = amlesh_resume.pdf
 RESUME_SRC  = ${RESUME_DIR}/${RESUME_FILE}
