@@ -7,13 +7,11 @@ css:
 ---
 
 <img class="profile" src="/data/spaceman.png"/>
-<div class="quote">
-<i>"Simplicity is the final achievement. After one has played quantity of notes
-and more notes, it is simplicity that emerges as the crowning reward of art."
-- Frédéric Chopin</i>
-</div>
-<!--
--->
+<div class="quote"><i>
+    "Simplicity is the final achievement. After one has played quantity of
+    notes and more notes, it is simplicity that emerges as the crowning reward
+    of art." - Frédéric Chopin
+</i></div>
 
 I am currently a NLP Engineer at Wells Fargo.
 

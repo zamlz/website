@@ -55,6 +55,7 @@ h2, .heading, .name {
 .quote {
     color: #555555;
     font-size: 0.8em;
+    padding-top: 10px;
     padding-left: 50px;
     padding-right: 50px;
     text-align: center;
