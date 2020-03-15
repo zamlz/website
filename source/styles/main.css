@@ -52,3 +52,10 @@ h2, .heading, .name {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.quote {
+    color: #555555;
+    font-size: 0.8em;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
