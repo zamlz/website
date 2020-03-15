@@ -43,4 +43,9 @@ install "*.png"
 install "*.jpg"
 install "*.pdf"
 install "favicon.ico"
-install "styles"
+
+# There must be a better hack for this.
+# The whole goal of this is to have a styles directory for the /blog
+# document root since it will be a subdomain of its own.
+INSTALL_DIR=$2/blog
+install "*.css"
