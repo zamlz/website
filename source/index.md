@@ -6,7 +6,7 @@ css:
   - "/styles/main.css"
 ---
 
-<img class="profile" src="/data/spaceman.png"/>
+<img class="profile" src="/data/lain_computer.gif"/>
 <div class="quote"><i>
     "Simplicity is the final achievement. After one has played quantity of
     notes and more notes, it is simplicity that emerges as the crowning reward

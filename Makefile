@@ -117,8 +117,8 @@ resume: resume_update ${RESUME_TAR} ${CV_TAR}
 # Build resume using original source files
 resume_update:
 	if [ -d "${RESUME_DIR}" ]; \
-	then git -C ${RESUME_DIR} pull; \
-	else git clone ${RESUME_URL} ${RESUME_DIR}; fi;
+	then GIT_SSL_NO_VERIFY=true git -C ${RESUME_DIR} pull; \
+	else GIT_SSL_NO_VERIFY=true git clone ${RESUME_URL} ${RESUME_DIR}; fi;
 	+${MAKE} -C ${RESUME_DIR}
 
 ${RESUME_TAR}: ${RESUME_SRC}
