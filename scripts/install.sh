@@ -42,6 +42,7 @@ install "*.css"
 install "*.png"
 install "*.jpg"
 install "*.pdf"
+install "*.gif"
 install "favicon.ico"
 
 # There must be a better hack for this.
