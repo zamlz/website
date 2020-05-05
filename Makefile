@@ -9,8 +9,7 @@
 
 # GENERAL MAKE VARIABLES
 
-SOURCE_DIR  = source
-DATA_DIR    = ${SOURCE_DIR}/data
+SOURCE_DIR  = ./source
 INSTALL_DIR	= /var/www/zamlz.org
 
 ADDRESS     = 0.0.0.0
@@ -58,17 +57,20 @@ build-forever:
 
 # Build dependencies
 PANDOC      = pandoc -f markdown -t html
-PD_TEMPLATE = source/.template.html
+PD_TEMPLATE = resources/template.html
 
 # Directories
+MAIN_DIR = ${SOURCE_DIR}/main
 BLOG_DIR = ${SOURCE_DIR}/blog
 BLOG_POST_DIR = ${BLOG_DIR}/posts
 
-# Markdown Files
-MAIN_MD = ${SOURCE_DIR}/index.md
+# Markdown Files for Main
+MAIN_MD = ${MAIN_DIR}/index.md
+
+# Markdown Files for Blog
 BLOG_MD = ${BLOG_DIR}/index.md
-TIME_MD = source/blog/posts.md
-TAGS_MD = source/blog/tags.md
+TIME_MD = ${BLOG_DIR}/posts.md
+TAGS_MD = ${BLOG_DIR}/tags.md
 POST_MD = $(shell find ${BLOG_POST_DIR} -type f -name "*.md")
 
 # HTML Files
@@ -80,7 +82,9 @@ POST_HTML = ${POST_MD:.md=.html}
 ###############################################################################
 
 # Builds all components of the website
-website: ${MAIN_HTML} ${TIME_HTML} ${TAGS_HTML} ${POST_HTML}
+website: main blog
+main: ${MAIN_HTML}
+blog: ${TIME_HTML} ${TAGS_HTML} ${POST_HTML}
 
 # Blog posts page ordered by time
 ${TIME_MD}: ${BLOG_MD} ${POST_MD}
@@ -103,11 +107,11 @@ RESUME_URL  = https://git.zamlz.org/resume.git
 
 RESUME_FILE = amlesh_resume.pdf
 RESUME_SRC  = ${RESUME_DIR}/${RESUME_FILE}
-RESUME_TAR  = ${DATA_DIR}/${RESUME_FILE}
+RESUME_TAR  = ${MAIN_DIR}/data/${RESUME_FILE}
 
 CV_FILE     = amlesh_curriculum_vitae.pdf
 CV_SRC      = ${RESUME_DIR}/${CV_FILE}
-CV_TAR      = ${DATA_DIR}/${CV_FILE}
+CV_TAR      = ${MAIN_DIR}/data/${CV_FILE}
 
 ###############################################################################
 
@@ -142,6 +146,6 @@ clean:
 
 ###############################################################################
 
-.PHONY = ${RESUME_SRC} ${CV_SRC} website resume clean build \
+.PHONY = ${RESUME_SRC} ${CV_SRC} website main blog resume clean build \
          lock unlock test install build-forever
 
