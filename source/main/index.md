@@ -3,10 +3,10 @@
 title: Amlesh Sivanantham
 subtitle: computer scientist | software engineer
 css:
-  - "/styles/main.css"
+  - "/resources/default.css"
 ---
 
-<img class="profile" src="/data/lain_computer.gif"/>
+<img class="profile" src="./data/lain_computer.gif"/>
 <div class="quote"><i>
     "Simplicity is the final achievement. After one has played quantity of
     notes and more notes, it is simplicity that emerges as the crowning reward

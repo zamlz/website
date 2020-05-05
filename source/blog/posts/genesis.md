@@ -4,7 +4,7 @@ title: Genesis
 author: Amlesh Sivanantham
 date: May 5, 2018
 css:
-  - "/styles/main.css"
+  - "/resources/default.css"
 ---
 
 Welcome to the first post of this blog. I don't actually know what
