@@ -82,8 +82,19 @@ POST_HTML = ${POST_MD:.md=.html}
 ###############################################################################
 
 # Builds all components of the website
-website: main blog
+website: main blog notes
+
+# General build procedure for html files
+%.html: %.md ${PD_TEMPLATE}
+	${PANDOC} $< -o $@ --template=${PD_TEMPLATE}
+
+###############################################################################
+
+# Build script for main website is pretty straightforward
 main: ${MAIN_HTML}
+
+###############################################################################
+
 blog: ${TIME_HTML} ${TAGS_HTML} ${POST_HTML}
 
 # Blog posts page ordered by time
@@ -93,10 +104,6 @@ ${TIME_MD}: ${BLOG_MD} ${POST_MD}
 # Blog posts page grouped by tags
 ${TAGS_MD}: ${BLOG_MD} ${POST_MD}
 	./scripts/make_blog.py --tags $^ > $@
-
-# General build procedure for html files
-%.html: %.md ${PD_TEMPLATE}
-	${PANDOC} $< -o $@ --template=${PD_TEMPLATE}
 
 ###############################################################################
 
@@ -133,12 +140,24 @@ ${CV_TAR}: ${CV_SRC}
 
 ###############################################################################
 
+# NOTES VARIABLES (note, you manually add this repo and update your manually)
+NOTES_DIR   = ${SOURCE_DIR}/notes
+NOTES_MD    = $(shell find -L ${NOTES_DIR} -type f -name "*.md")
+NOTES_HTML  = ${NOTES_MD:.md=.html}
+
+###############################################################################
+
+notes: ${NOTES_HTML}
+
+###############################################################################
+
 # Clean up after the builder
 clean:
 	-rm ${RESUME_TAR}
 	-rm ${CV_TAR}
 	-rm ${MAIN_HTML}
 	-rm ${POST_HTML}
+	-rm ${NOTES_HTML}
 	-rm ${TIME_HTML}
 	-rm ${TAGS_HTML}
 	-rm ${TIME_MD}
@@ -146,6 +165,6 @@ clean:
 
 ###############################################################################
 
-.PHONY = ${RESUME_SRC} ${CV_SRC} website main blog resume clean build \
+.PHONY = ${RESUME_SRC} ${CV_SRC} website main blog notes resume clean build \
          lock unlock test install build-forever
 
