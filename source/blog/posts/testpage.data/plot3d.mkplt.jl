@@ -2,9 +2,12 @@
 # This is not a good Julia script,
 # just a quick and dirty 3d plot
 
+using Random
 using Plots
 theme(:juno)
 plotly()
+
+OUTFILE = ARGS[1]
 
 # Create arrays
 x = Float64[]
@@ -27,4 +30,5 @@ for _ in 1:100
 end
 
 plot3d(x, y, z)
-savefig("test.html")
+
+savefig(OUTFILE)

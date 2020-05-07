@@ -57,7 +57,7 @@ build-forever:
 
 # Build dependencies
 PANDOC      = pandoc -f markdown -t html
-PD_TEMPLATE = resources/template.html
+PD_TEMPLATE = ./resources/template.html
 
 # Directories
 MAIN_DIR = ${SOURCE_DIR}/main
@@ -151,6 +151,28 @@ notes: ${NOTES_HTML}
 
 ###############################################################################
 
+# Julia Plot variables
+JULIA_PLOTS      = $(shell find -L ${SOURCE_DIR} -type f -name "*.mkplt.jl")
+JULIA_PLOTS_HTML = ${JULIA_PLOTS:.mkplt.jl=.mkplt.html}
+HTML_POSTPROCESS = ./scripts/htmlplot_preprocess.py
+
+###############################################################################
+
+julia-plots: ${JULIA_PLOTS_HTML}
+
+%.tmp.mkplt.html : %.mkplt.jl
+	julia $< $@
+
+%.mkplt.html : %.tmp.mkplt.html
+	${HTML_POSTPROCESS} $< > $@
+
+###############################################################################
+
+.PHONY = ${RESUME_SRC} ${CV_SRC} website main blog notes resume clean build \
+         lock unlock test install build-forever
+
+###############################################################################
+
 # Clean up after the builder
 clean:
 	-rm ${RESUME_TAR}
@@ -158,13 +180,10 @@ clean:
 	-rm ${MAIN_HTML}
 	-rm ${POST_HTML}
 	-rm ${NOTES_HTML}
+	-rm ${JULIA_PLOTS_HTML}
 	-rm ${TIME_HTML}
 	-rm ${TAGS_HTML}
 	-rm ${TIME_MD}
 	-rm ${TAGS_MD}
 
-###############################################################################
-
-.PHONY = ${RESUME_SRC} ${CV_SRC} website main blog notes resume clean build \
-         lock unlock test install build-forever
 
