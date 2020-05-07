@@ -82,7 +82,7 @@ POST_HTML = ${POST_MD:.md=.html}
 ###############################################################################
 
 # Builds all components of the website
-website: main blog notes
+website: julia-plots main blog notes
 
 # General build procedure for html files
 %.html: %.md ${PD_TEMPLATE}
@@ -160,16 +160,13 @@ HTML_POSTPROCESS = ./scripts/htmlplot_preprocess.py
 
 julia-plots: ${JULIA_PLOTS_HTML}
 
-%.tmp.mkplt.html : %.mkplt.jl
+%.mkplt.html : %.mkplt.jl
 	julia $< $@
-
-%.mkplt.html : %.tmp.mkplt.html
-	${HTML_POSTPROCESS} $< > $@
 
 ###############################################################################
 
 .PHONY = ${RESUME_SRC} ${CV_SRC} website main blog notes resume clean build \
-         lock unlock test install build-forever
+         lock unlock test install build-forever julia-plots
 
 ###############################################################################
 
