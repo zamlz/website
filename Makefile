@@ -10,7 +10,14 @@
 # GENERAL MAKE VARIABLES
 
 SOURCE_DIR  = ./source
-INSTALL_DIR	= /var/www/zamlz.org
+MAIN_DIR    = ${SOURCE_DIR}/main
+BLOG_DIR    = ${SOURCE_DIR}/blog
+NOTES_DIR   = ${SOURCE_DIR}/notes
+
+INSTALL_DIR       = /var/www
+MAIN_INSTALL_DIR  = ${INSTALL_DIR}/zamlz.org
+BLOG_INSTALL_DIR  = ${INSTALL_DIR}/blog.zamlz.org
+NOTES_INSTALL_DIR = ${INSTALL_DIR}/notes.zamlz.org
 
 ADDRESS     = 0.0.0.0
 PORT        = 8000
@@ -37,19 +44,47 @@ lock: clean
 # Test the system locally
 test:
 	@echo "================ STARTING TEST SERVER ================"
-	./scripts/server.sh ${SOURCE_DIR} ${ADDRESS} ${PORT}
+	./scripts/server.sh ${SOURCE_DIR} ${ADDRESS} 8000
 
 # Install to the server folder (notice the lock)
-install: clean lock build
+install:
 	@echo "================= INSTALLING WEBSITE ================="
-	./scripts/install.sh ${SOURCE_DIR} ${INSTALL_DIR}
-
-build-forever:
-	@echo "================ CONTINUOUS BUILDING ================="
-	while true; do \
-		make website; \
-		sleep 1; \
-	done;
+	@echo "Source Directory  : ${MAIN_DIR}"
+	@echo "Install Directory : ${MAIN_INSTALL_DIR}"
+	@echo "======================================================"
+	-rm -rfv ${MAIN_INSTALL_DIR}
+	@echo "======================================================"
+	rsync -a --include '*/' --include '*.html' --exclude '*' ${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
+	@find -L ${MAIN_DIR} -name '*.html'
+	rsync -a --include '*/' --include '*.pdf' --exclude '*' ${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
+	@find -L ${MAIN_DIR} -name '*.pdf'
+	rsync -a --include '*/' --include '*.gif' --exclude '*' ${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
+	@find -L ${MAIN_DIR} -name '*.gif'
+	rsync -a --include '*/' --include '*.css' --exclude '*' resources ${MAIN_INSTALL_DIR}/
+	@find -L ${MAIN_DIR} -name '*.css'
+	@echo "======================================================"
+	@echo "Source Directory  : ${BLOG_DIR}"
+	@echo "Install Directory : ${BLOG_INSTALL_DIR}"
+	@echo "======================================================"
+	-rm -rfv ${BLOG_INSTALL_DIR}
+	@echo "======================================================"
+	rsync -a --include '*/' --include '*.html' --exclude '*' ${BLOG_DIR}/ ${BLOG_INSTALL_DIR}/
+	@find -L ${BLOG_DIR} -name '*.html'
+	rsync -a --include '*/' --include '*.css' --exclude '*' resources ${BLOG_INSTALL_DIR}/
+	@find -L ${MAIN_DIR} -name '*.css'
+	@echo "======================================================"
+	@echo "Source Directory  : ${NOTES_DIR}"
+	@echo "Install Directory : ${NOTES_INSTALL_DIR}"
+	@echo "======================================================"
+	-rm -rfv ${NOTES_INSTALL_DIR}
+	@echo "======================================================"
+	-rsync -a --include '*/' --include '*.html' --exclude '*' ${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
+	-@find -L ${NOTES_DIR} -name '*.html'
+	-rsync -a --include '*/' --include '*.png' --exclude '*' ${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
+	-@find -L ${NOTES_DIR} -name '*.png'
+	-rsync -a --include '*/' --include '*.css' --exclude '*' resources ${NOTES_INSTALL_DIR}/
+	-@find -L ${MAIN_DIR} -name '*.css'
+	@echo "======================================================"
 
 ###############################################################################
 
@@ -60,8 +95,6 @@ PANDOC      = pandoc -f markdown -t html
 PD_TEMPLATE = ./resources/template.html
 
 # Directories
-MAIN_DIR = ${SOURCE_DIR}/main
-BLOG_DIR = ${SOURCE_DIR}/blog
 BLOG_POST_DIR = ${BLOG_DIR}/posts
 
 # Markdown Files for Main
@@ -141,7 +174,6 @@ ${CV_TAR}: ${CV_SRC}
 ###############################################################################
 
 # NOTES VARIABLES (note, you manually add this repo and update your manually)
-NOTES_DIR   = ${SOURCE_DIR}/notes
 NOTES_MD    = $(shell find -L ${NOTES_DIR} -type f -name "*.md")
 NOTES_HTML  = ${NOTES_MD:.md=.html}
 
@@ -172,6 +204,7 @@ julia-plots: ${JULIA_PLOTS_HTML}
 
 # Clean up after the builder
 clean:
+	@echo "================ CLEANING BUILD FILES ================="
 	-rm ${RESUME_TAR}
 	-rm ${CV_TAR}
 	-rm ${MAIN_HTML}
@@ -182,5 +215,3 @@ clean:
 	-rm ${TAGS_HTML}
 	-rm ${TIME_MD}
 	-rm ${TAGS_MD}
-
-
