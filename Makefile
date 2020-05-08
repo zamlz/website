@@ -62,6 +62,7 @@ install:
 	@find -L ${MAIN_DIR} -name '*.gif'
 	rsync -a --include '*/' --include '*.css' --exclude '*' resources ${MAIN_INSTALL_DIR}/
 	@find -L ${MAIN_DIR} -name '*.css'
+	cp resources/favicon.ico ${MAIN_INSTALL_DIR}/
 	@echo "======================================================"
 	@echo "Source Directory  : ${BLOG_DIR}"
 	@echo "Install Directory : ${BLOG_INSTALL_DIR}"
@@ -72,6 +73,7 @@ install:
 	@find -L ${BLOG_DIR} -name '*.html'
 	rsync -a --include '*/' --include '*.css' --exclude '*' resources ${BLOG_INSTALL_DIR}/
 	@find -L ${MAIN_DIR} -name '*.css'
+	cp resources/favicon.ico ${BLOG_INSTALL_DIR}/
 	@echo "======================================================"
 	@echo "Source Directory  : ${NOTES_DIR}"
 	@echo "Install Directory : ${NOTES_INSTALL_DIR}"
@@ -84,6 +86,7 @@ install:
 	-@find -L ${NOTES_DIR} -name '*.png'
 	-rsync -a --include '*/' --include '*.css' --exclude '*' resources ${NOTES_INSTALL_DIR}/
 	-@find -L ${MAIN_DIR} -name '*.css'
+	cp resources/favicon.ico ${NOTES_INSTALL_DIR}/
 	@echo "======================================================"
 
 ###############################################################################
