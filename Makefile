@@ -1,10 +1,10 @@
+###############################################################################
 # __  __       _         __ _ _
 #|  \/  | __ _| | _____ / _(_) | ___
 #| |\/| |/ _` | |/ / _ \ |_| | |/ _ \
 #| |  | | (_| |   <  __/  _| | |  __/
 #|_|  |_|\__,_|_|\_\___|_| |_|_|\___|
 #
-
 ###############################################################################
 
 # GENERAL MAKE VARIABLES
@@ -79,9 +79,11 @@ install:
 	@echo "======================================================"
 	-rm -rfv ${BLOG_INSTALL_DIR}
 	@echo "======================================================"
-	rsync -a --include '*/' --include '*.html' --exclude '*' ${BLOG_DIR}/ ${BLOG_INSTALL_DIR}/
+	rsync -a --include '*/' --include '*.html' --exclude '*' \
+		${BLOG_DIR}/ ${BLOG_INSTALL_DIR}/
 	@find -L ${BLOG_DIR} -name '*.html'
-	rsync -a --include '*/' --include '*.css' --exclude '*' resources ${BLOG_INSTALL_DIR}/
+	rsync -a --include '*/' --include '*.css' --exclude '*' \
+		resources ${BLOG_INSTALL_DIR}/
 	@find -L ${MAIN_DIR} -name '*.css'
 	cp resources/favicon.ico ${BLOG_INSTALL_DIR}/
 	@echo "======================================================"
@@ -90,42 +92,28 @@ install:
 	@echo "======================================================"
 	-rm -rfv ${NOTES_INSTALL_DIR}
 	@echo "======================================================"
-	-rsync -a --include '*/' --include '*.html' --exclude '*' ${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
-	-rsync -a --include '*/' --include '*.html' --exclude '*' ${NOTES_DIR}/notes/ ${NOTES_INSTALL_DIR}/notes/
+	-rsync -a --include '*/' --include '*.html' --exclude '*' \
+		${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
+	-rsync -a --include '*/' --include '*.html' --exclude '*' \
+		${NOTES_DIR}/notes/ ${NOTES_INSTALL_DIR}/notes/
 	-@find -L ${NOTES_DIR} -name '*.html'
-	-rsync -a --include '*/' --include '*.png' --exclude '*' ${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
-	-rsync -a --include '*/' --include '*.png' --exclude '*' ${NOTES_DIR}/notes/ ${NOTES_INSTALL_DIR}/notes/
+	-rsync -a --include '*/' --include '*.png' --exclude '*' \
+		${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
+	-rsync -a --include '*/' --include '*.png' --exclude '*' \
+		${NOTES_DIR}/notes/ ${NOTES_INSTALL_DIR}/notes/
 	-@find -L ${NOTES_DIR} -name '*.png'
-	-rsync -a --include '*/' --include '*.css' --exclude '*' resources ${NOTES_INSTALL_DIR}/
+	-rsync -a --include '*/' --include '*.css' --exclude '*' \
+		resources ${NOTES_INSTALL_DIR}/
 	-@find -L ${MAIN_DIR} -name '*.css'
 	cp resources/favicon.ico ${NOTES_INSTALL_DIR}/
 	@echo "======================================================"
 
 ###############################################################################
 
-# WEBSITE MAKE VARIABLES
-
 # Build dependencies
 PANDOC      = pandoc -f markdown -t html
 PD_TEMPLATE = ./resources/template.html
-
-# Directories
-BLOG_POST_DIR = ${BLOG_DIR}/posts
-
-# Markdown Files for Main
-MAIN_MD = ${MAIN_DIR}/index.md
-
-# Markdown Files for Blog
-BLOG_MD = ${BLOG_DIR}/index.md
-TIME_MD = ${BLOG_DIR}/posts.md
-TAGS_MD = ${BLOG_DIR}/tags.md
-POST_MD = $(shell find ${BLOG_POST_DIR} -type f -name "*.md")
-
-# HTML Files
-MAIN_HTML = ${MAIN_MD:.md=.html}
-TIME_HTML = ${TIME_MD:.md=.html}
-TAGS_HTML = ${TAGS_MD:.md=.html}
-POST_HTML = ${POST_MD:.md=.html}
+LIST_GENERATOR = ./scripts/make_list.py
 
 ###############################################################################
 
@@ -138,20 +126,78 @@ website: julia-plots main blog notes
 
 ###############################################################################
 
+# Markdown Files for Main
+MAIN_MD = ${MAIN_DIR}/index.md
+MAIN_HTML = ${MAIN_MD:.md=.html}
+
+###############################################################################
+
 # Build script for main website is pretty straightforward
 main: resume ${MAIN_HTML}
+
+###############################################################################
+
+# Markdown Files for Blog
+BLOG_TEMPLATE_MD = ${BLOG_DIR}/template.md
+TIME_MD = ${BLOG_DIR}/posts.md
+TAGS_MD = ${BLOG_DIR}/tags.md
+
+# HTML Files
+TIME_HTML = ${TIME_MD:.md=.html}
+TAGS_HTML = ${TAGS_MD:.md=.html}
+POST_HTML = ${POST_MD:.md=.html}
+
+# Create the collection of blog posts
+BLOG_POST_DIR = ${BLOG_DIR}/posts
+POST_MD = $(shell find ${BLOG_POST_DIR} -type f -name "*.md")
 
 ###############################################################################
 
 blog: ${TIME_HTML} ${TAGS_HTML} ${POST_HTML}
 
 # Blog posts page ordered by time
-${TIME_MD}: ${BLOG_MD} ${POST_MD}
-	./scripts/make_blog.py --time $^ > $@
+${TIME_MD}: ${BLOG_TEMPLATE_MD} ${POST_MD} ${LIST_GENERATOR}
+	cat ${BLOG_TEMPLATE_MD} > $@
+	${LIST_GENERATOR} --time ${BLOG_DIR} ${POST_MD} >> $@
 
 # Blog posts page grouped by tags
-${TAGS_MD}: ${BLOG_MD} ${POST_MD}
-	./scripts/make_blog.py --tags $^ > $@
+${TAGS_MD}: ${BLOG_TEMPLATE_MD} ${POST_MD}
+	cat ${BLOG_TEMPLATE_MD} > $@
+	${LIST_GENERATOR} --tags ${BLOG_DIR} ${POST_MD} >> $@
+
+###############################################################################
+
+# NOTES VARIABLES (note, you manually add this repo and update your manually)
+NOTES_TEMPLATE_MD =${NOTES_DIR}/template.md
+TOC_MD      = ${NOTES_DIR}/toc.md
+TOC_HTML    = ${TOC_MD:.md=.html}
+
+NOTES_MD    = $(shell find -L ${NOTES_DIR}/notes -type f -name "*.md")
+NOTES_HTML  = ${NOTES_MD:.md=.html}
+
+TITLE_FILES = $(shell find -L ${NOTES_DIR}/notes -type f -name "title")
+
+###############################################################################
+
+notes: ${TOC_HTML} ${NOTES_HTML}
+
+${TOC_MD}: ${NOTES_TEMPLATE_MD} ${NOTES_MD} ${LIST_GENERATOR} ${TITLE_FILES}
+	cat ${NOTES_TEMPLATE_MD} > $@
+	${LIST_GENERATOR} --toc ${NOTES_DIR} ${NOTES_MD} >> $@
+
+###############################################################################
+
+# Julia Plot variables
+JULIA_PLOTS      = $(shell find -L ${SOURCE_DIR} -type f -name "*.mkplt.jl")
+JULIA_PLOTS_HTML = ${JULIA_PLOTS:.mkplt.jl=.mkplt.html}
+HTML_POSTPROCESS = ./scripts/htmlplot_preprocess.py
+
+###############################################################################
+
+julia-plots: ${JULIA_PLOTS_HTML}
+
+%.mkplt.html : %.mkplt.jl
+	julia $< $@
 
 ###############################################################################
 
@@ -189,30 +235,6 @@ ${CV_TAR}: ${CV_SRC}
 
 ###############################################################################
 
-# NOTES VARIABLES (note, you manually add this repo and update your manually)
-NOTES_MD    = $(shell find -L ${NOTES_DIR} -type f -name "*.md")
-NOTES_HTML  = ${NOTES_MD:.md=.html}
-
-###############################################################################
-
-notes: ${NOTES_HTML}
-
-###############################################################################
-
-# Julia Plot variables
-JULIA_PLOTS      = $(shell find -L ${SOURCE_DIR} -type f -name "*.mkplt.jl")
-JULIA_PLOTS_HTML = ${JULIA_PLOTS:.mkplt.jl=.mkplt.html}
-HTML_POSTPROCESS = ./scripts/htmlplot_preprocess.py
-
-###############################################################################
-
-julia-plots: ${JULIA_PLOTS_HTML}
-
-%.mkplt.html : %.mkplt.jl
-	julia $< $@
-
-###############################################################################
-
 .PHONY = ${RESUME_SRC} ${CV_SRC} website main blog notes resume clean build \
          lock unlock test install build-forever julia-plots
 
@@ -226,8 +248,10 @@ clean:
 	-rm ${MAIN_HTML}
 	-rm ${POST_HTML}
 	-rm ${NOTES_HTML}
-	-rm ${JULIA_PLOTS_HTML}
 	-rm ${TIME_HTML}
 	-rm ${TAGS_HTML}
 	-rm ${TIME_MD}
 	-rm ${TAGS_MD}
+	-rm ${TOC_MD}
+	-rm ${TOC_HTML}
+	-rm ${JULIA_PLOTS_HTML}

@@ -3,6 +3,7 @@
 *.draft.md
 source/blog/posts.md
 source/blog/tags.md
+source/notes/toc.md
 source/notes/notes
 
 # This are build files
