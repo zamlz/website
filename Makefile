@@ -26,8 +26,6 @@ PORT        = 8000
 
 # Builds the html files
 build:
-	@echo "================== BUILDING RESUME ==================="
-	+${MAKE} resume
 	@echo "================== BUILDING WEBSITE =================="
 	+${MAKE} website
 
@@ -42,9 +40,17 @@ lock: clean
 	./scripts/crypt.sh lock ${SOURCE_DIR}
 
 # Test the system locally
-test:
+test-main: build
 	@echo "================ STARTING TEST SERVER ================"
-	./scripts/server.sh ${SOURCE_DIR} ${ADDRESS} 8000
+	./scripts/server.sh ${MAIN_DIR} ${ADDRESS} 8000
+
+test-blog: build
+	@echo "================ STARTING TEST SERVER ================"
+	./scripts/server.sh ${BLOG_DIR} ${ADDRESS} 8000
+
+test-notes: build
+	@echo "================ STARTING TEST SERVER ================"
+	./scripts/server.sh ${NOTES_DIR} ${ADDRESS} 8000
 
 # Install to the server folder (notice the lock)
 install:
@@ -54,13 +60,17 @@ install:
 	@echo "======================================================"
 	-rm -rfv ${MAIN_INSTALL_DIR}
 	@echo "======================================================"
-	rsync -a --include '*/' --include '*.html' --exclude '*' ${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
+	rsync -a --include '*/' --include '*.html' --exclude '*' \
+		${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
 	@find -L ${MAIN_DIR} -name '*.html'
-	rsync -a --include '*/' --include '*.pdf' --exclude '*' ${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
+	rsync -a --include '*/' --include '*.pdf' --exclude '*' \
+		${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
 	@find -L ${MAIN_DIR} -name '*.pdf'
-	rsync -a --include '*/' --include '*.gif' --exclude '*' ${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
+	rsync -a --include '*/' --include '*.gif' --exclude '*' \
+		${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
 	@find -L ${MAIN_DIR} -name '*.gif'
-	rsync -a --include '*/' --include '*.css' --exclude '*' resources ${MAIN_INSTALL_DIR}/
+	rsync -a --include '*/' --include '*.css' --exclude '*' \
+		resources ${MAIN_INSTALL_DIR}/
 	@find -L ${MAIN_DIR} -name '*.css'
 	cp resources/favicon.ico ${MAIN_INSTALL_DIR}/
 	@echo "======================================================"
@@ -81,8 +91,10 @@ install:
 	-rm -rfv ${NOTES_INSTALL_DIR}
 	@echo "======================================================"
 	-rsync -a --include '*/' --include '*.html' --exclude '*' ${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
+	-rsync -a --include '*/' --include '*.html' --exclude '*' ${NOTES_DIR}/notes/ ${NOTES_INSTALL_DIR}/notes/
 	-@find -L ${NOTES_DIR} -name '*.html'
 	-rsync -a --include '*/' --include '*.png' --exclude '*' ${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
+	-rsync -a --include '*/' --include '*.png' --exclude '*' ${NOTES_DIR}/notes/ ${NOTES_INSTALL_DIR}/notes/
 	-@find -L ${NOTES_DIR} -name '*.png'
 	-rsync -a --include '*/' --include '*.css' --exclude '*' resources ${NOTES_INSTALL_DIR}/
 	-@find -L ${MAIN_DIR} -name '*.css'
@@ -127,7 +139,7 @@ website: julia-plots main blog notes
 ###############################################################################
 
 # Build script for main website is pretty straightforward
-main: ${MAIN_HTML}
+main: resume ${MAIN_HTML}
 
 ###############################################################################
 
@@ -163,6 +175,7 @@ resume: resume_update ${RESUME_TAR} ${CV_TAR}
 
 # Build resume using original source files
 resume_update:
+	@echo "================== BUILDING RESUME ==================="
 	if [ -d "${RESUME_DIR}" ]; \
 	then GIT_SSL_NO_VERIFY=true git -C ${RESUME_DIR} pull; \
 	else GIT_SSL_NO_VERIFY=true git clone ${RESUME_URL} ${RESUME_DIR}; fi;

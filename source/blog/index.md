@@ -7,5 +7,5 @@ css:
   - "/resources/blog_list.css"
 ---
 
-*Ordering:* [ [ timestamp ](/blog/posts.html) ] [ [ tags](/blog/tags.html) ]
+*Ordering:* [ [ timestamp ](/posts.html) ] [ [ tags](/tags.html) ]
 

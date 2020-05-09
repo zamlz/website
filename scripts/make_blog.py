@@ -26,7 +26,7 @@ if mode == '--time':
     for post in blog_posts:
         pt = frontmatter.load(post)
 
-        url = post.replace('source', '').replace('.md', '.html')
+        url = post.replace('source/blog', '').replace('.md', '.html')
 
         title = pt.get('title', 'TITLEisMISSING')
 

@@ -3,7 +3,7 @@
 *.draft.md
 source/blog/posts.md
 source/blog/tags.md
-source/notes
+source/notes/notes
 
 # This are build files
 *.html
@@ -12,4 +12,3 @@ source/notes
 
 # Ignore the resume directory thats created here
 .__resume__/
-testing/
