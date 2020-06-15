@@ -204,7 +204,7 @@ julia-plots: ${JULIA_PLOTS_HTML}
 # RESUME MAKE VARIABLES
 
 RESUME_DIR  = .__resume__
-RESUME_URL  = https://git.zamlz.org/resume.git
+RESUME_URL  = https://github.com/zamlz/resume.git
 
 RESUME_FILE = amlesh_resume.pdf
 RESUME_SRC  = ${RESUME_DIR}/${RESUME_FILE}
@@ -223,8 +223,8 @@ resume: resume_update ${RESUME_TAR} ${CV_TAR}
 resume_update:
 	@echo "================== BUILDING RESUME ==================="
 	if [ -d "${RESUME_DIR}" ]; \
-	then GIT_SSL_NO_VERIFY=true git -C ${RESUME_DIR} pull; \
-	else GIT_SSL_NO_VERIFY=true git clone ${RESUME_URL} ${RESUME_DIR}; fi;
+	then git -C ${RESUME_DIR} pull; \
+	else git clone ${RESUME_URL} ${RESUME_DIR}; fi;
 	+${MAKE} -C ${RESUME_DIR}
 
 ${RESUME_TAR}: ${RESUME_SRC}
