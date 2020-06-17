@@ -41,6 +41,17 @@ body {
     background: #000000;
 }
 
+table {
+    border: 1px solid black;
+    border-color: #d6ceba;
+    margin: 0 auto;
+}
+
+th, td {
+    border: 1px solid black;
+    border-color: #d6ceba;
+}
+
 h2, .heading, .name {
     color: #d6ceba;
 }
