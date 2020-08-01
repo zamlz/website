@@ -6,7 +6,7 @@ css:
   - "/resources/default.css"
 ---
 
-<img class="profile" src="./data/lain_computer.gif"/>
+<img class="profile" src="https://avatars3.githubusercontent.com/u/10750027?s=460&u=d9e9425202ba898244d14b6e8c0a23c29c36ccfa&v=4"/>
 <div class="quote"><i>
     "Simplicity is the final achievement. After one has played quantity of
     notes and more notes, it is simplicity that emerges as the crowning reward

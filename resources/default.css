@@ -1,19 +1,23 @@
 /* CSS Theme from the amazing Evan Jones (evanjones.ca) */
 
+a {
+    text-decoration: none;
+}
+
 a:link {
-    color: #d6ceba;
-    border-bottom: solid thin #d6ceba;
+    color: #181818;
+    border-bottom: solid thin #4585AA;
 }
 
 a:visited {
-    color: #999;
-    border-bottom: dotted thin #999;
+    color: #4585AA;
+    border-bottom: dotted thin #4585AA;
 }
 
 a:hover {
     color: #000;
     border-bottom: none;
-    background: #fff;
+    background: #4585AA;
 }
 
 a:active {
@@ -22,8 +26,21 @@ a:active {
     border-bottom: dotted thin #d6ceba;
 }
 
-a {
-    text-decoration: none;
+.heading a:link{
+    color: #181818;
+    border-bottom: solid thin #d6ceba;
+    font-weight: bold;
+}
+
+.heading a:visited {
+    color: #181818;
+    border-bottom: solid thin #d6ceba;
+}
+
+.heading a:hover {
+    color: #fff;
+    border-bottom: none;
+    background: #181818;
 }
 
 body {
@@ -34,26 +51,26 @@ body {
     min-width: 40em;
     max-width: 800px;
     border: thin solid #777777;
-    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
-    font-size: 16px;
+    font-family: 'Computer Modern Serif', Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-size: 20px;
     line-height: 1.4;
-    color: #d6ceba;
-    background: #000000;
+    color: #181818;
+    background: #ffffff;
 }
 
 table {
     border: 1px solid black;
-    border-color: #d6ceba;
+    border-color: #181818;
     margin: 0 auto;
 }
 
 th, td {
     border: 1px solid black;
-    border-color: #d6ceba;
+    border-color: #181818;
 }
 
 h2, .heading, .name {
-    color: #d6ceba;
+    color: #181818;
 }
 
 .heading, .name {
@@ -63,7 +80,6 @@ h2, .heading, .name {
 
 .name {
     font-size: 250%;
-    font-weight: bold;
 }
 
 .me {
@@ -85,7 +101,7 @@ h2, .heading, .name {
 }
 
 .quote {
-    color: #aaaaaa;
+    color: #333;
     font-size: 0.8em;
     padding-top: 10px;
     padding-left: 50px;
