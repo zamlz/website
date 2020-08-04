@@ -124,6 +124,9 @@ website: resume julia-plots main blog wiki
 %.html: %.md ${PD_TEMPLATE}
 	${PANDOC} $< -o $@ --template=${PD_TEMPLATE}
 
+%.html: %.wiki.md ${PD_TEMPLATE}
+	${PANDOC} $< -o $@ --template=${PD_TEMPLATE}
+
 ###############################################################################
 
 # Markdown Files for Main
@@ -183,17 +186,18 @@ WIKI_HEADER = ${WIKI_DIR}/header.md
 
 _WIKI_BASE_MD = $(shell find ${VIMWIKI_DIR} -name "*.md" | \
                   sed -e 's|'${VIMWIKI_DIR}'/||g')
-WIKI_MD	= $(patsubst %, ${WIKI_DIR}/%, $(_WIKI_BASE_MD))
-WIKI_HTML   = ${WIKI_MD:.md=.html}
+_WIKI_MD	= $(patsubst %, ${WIKI_DIR}/%, $(_WIKI_BASE_MD))
+WIKI_MD		= ${_WIKI_MD:.md=.wiki.md}
+WIKI_HTML   = ${_WIKI_MD:.md=.html}
 
 ###############################################################################
 
 wiki: ${WIKI_HTML}
 
-${WIKI_MD}: ${WIKI_DIR}/%: ${VIMWIKI_DIR}/%
+${WIKI_MD}: ${WIKI_DIR}/%.wiki.md: ${VIMWIKI_DIR}/%.md
 	mkdir --parents $(shell dirname $@)
 	cat ${WIKI_HEADER} > $@
-	cat $< >> $@
+	cat $< | perl -ne 's/(\[.+\])\(((?!http)[^)]+)\)/\1(\2.html)/g; print;' >> $@
 
 wiki-clean:
 	-rm ${WIKI_MD}

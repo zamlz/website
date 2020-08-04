@@ -12,7 +12,7 @@ source/notes/notes
 *.pdf
 
 # For wiki, these are also build files
-source/wiki/*.md
+*.wiki.md
 
 # Ignore the resume directory thats created here
 .__resume__/
