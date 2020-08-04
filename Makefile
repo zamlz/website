@@ -9,15 +9,15 @@
 
 # GENERAL MAKE VARIABLES
 
-SOURCE_DIR  = ./source
-MAIN_DIR    = ${SOURCE_DIR}/main
-BLOG_DIR    = ${SOURCE_DIR}/blog
-NOTES_DIR   = ${SOURCE_DIR}/notes
+SOURCE_DIR = ./source
+MAIN_DIR   = ${SOURCE_DIR}/main
+BLOG_DIR   = ${SOURCE_DIR}/blog
+WIKI_DIR   = ${SOURCE_DIR}/wiki
 
-INSTALL_DIR       = /var/www
-MAIN_INSTALL_DIR  = ${INSTALL_DIR}/zamlz.org
-BLOG_INSTALL_DIR  = ${INSTALL_DIR}/blog.zamlz.org
-NOTES_INSTALL_DIR = ${INSTALL_DIR}/notes.zamlz.org
+INSTALL_DIR      = /var/www
+MAIN_INSTALL_DIR = ${INSTALL_DIR}/zamlz.org
+BLOG_INSTALL_DIR = ${INSTALL_DIR}/blog.zamlz.org
+WIKI_INSTALL_DIR = ${INSTALL_DIR}/wiki.zamlz.org
 
 ADDRESS     = 0.0.0.0
 PORT        = 8000
@@ -40,17 +40,17 @@ lock: clean
 	./scripts/crypt.sh lock ${SOURCE_DIR}
 
 # Test the system locally
-test-main: build
+test-main: resume main
 	@echo "================ STARTING TEST SERVER ================"
 	./scripts/server.sh ${MAIN_DIR} ${ADDRESS} 8000
 
-test-blog: build
+test-blog: julia-plots blog
 	@echo "================ STARTING TEST SERVER ================"
 	./scripts/server.sh ${BLOG_DIR} ${ADDRESS} 8000
 
-test-notes: build
+test-wiki: wiki
 	@echo "================ STARTING TEST SERVER ================"
-	./scripts/server.sh ${NOTES_DIR} ${ADDRESS} 8000
+	./scripts/server.sh ${WIKI_DIR} ${ADDRESS} 8000
 
 # Install to the server folder (notice the lock)
 install:
@@ -95,7 +95,7 @@ install:
 	-rsync -a --include '*/' --include '*.html' --exclude '*' \
 		${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
 	-rsync -a --include '*/' --include '*.html' --exclude '*' \
-		${NOTES_DIR}/notes/ ${NOTES_INSTALL_DIR}/notes/
+		${NOTES_DIR}/wiki/ ${NOTES_INSTALL_DIR}/wiki/
 	-@find -L ${NOTES_DIR} -name '*.html'
 	-rsync -a --include '*/' --include '*.png' --exclude '*' \
 		${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
@@ -118,7 +118,7 @@ LIST_GENERATOR = ./scripts/make_list.py
 ###############################################################################
 
 # Builds all components of the website
-website: julia-plots main blog notes
+website: resume julia-plots main blog wiki
 
 # General build procedure for html files
 %.html: %.md ${PD_TEMPLATE}
@@ -133,7 +133,10 @@ MAIN_HTML = ${MAIN_MD:.md=.html}
 ###############################################################################
 
 # Build script for main website is pretty straightforward
-main: resume ${MAIN_HTML}
+main: ${MAIN_HTML}
+
+main-clean:
+	-rm ${MAIN_HTML}
 
 ###############################################################################
 
@@ -165,25 +168,37 @@ ${TAGS_MD}: ${BLOG_TEMPLATE_MD} ${POST_MD}
 	cat ${BLOG_TEMPLATE_MD} > $@
 	${LIST_GENERATOR} --tags ${BLOG_DIR} ${POST_MD} >> $@
 
-###############################################################################
-
-# NOTES VARIABLES (note, you manually add this repo and update your manually)
-NOTES_TEMPLATE_MD =${NOTES_DIR}/template.md
-TOC_MD      = ${NOTES_DIR}/toc.md
-TOC_HTML    = ${TOC_MD:.md=.html}
-
-NOTES_MD    = $(shell find -L ${NOTES_DIR}/notes -type f -name "*.md")
-NOTES_HTML  = ${NOTES_MD:.md=.html}
-
-TITLE_FILES = $(shell find -L ${NOTES_DIR}/notes -type f -name "title")
+blog-clean:
+	-rm ${POST_HTML}
+	-rm ${TIME_HTML}
+	-rm ${TAGS_HTML}
+	-rm ${TIME_MD}
+	-rm ${TAGS_MD}
 
 ###############################################################################
 
-notes: ${TOC_HTML} ${NOTES_HTML}
+# WIKI VARIABLES
+VIMWIKI_DIR = $(shell echo $$VIMWIKI_DIR)
+WIKI_HEADER = ${WIKI_DIR}/header.md
 
-${TOC_MD}: ${NOTES_TEMPLATE_MD} ${NOTES_MD} ${LIST_GENERATOR} ${TITLE_FILES}
-	cat ${NOTES_TEMPLATE_MD} > $@
-	${LIST_GENERATOR} --toc ${NOTES_DIR} ${NOTES_MD} >> $@
+_WIKI_BASE_MD = $(shell find ${VIMWIKI_DIR} -name "*.md" | \
+                  sed -e 's|'${VIMWIKI_DIR}'/||g')
+WIKI_MD	= $(patsubst %, ${WIKI_DIR}/%, $(_WIKI_BASE_MD))
+WIKI_HTML   = ${WIKI_MD:.md=.html}
+
+###############################################################################
+
+wiki: ${WIKI_HTML}
+
+${WIKI_MD}: ${WIKI_DIR}/%: ${VIMWIKI_DIR}/%
+	mkdir --parents $(shell dirname $@)
+	cat ${WIKI_HEADER} > $@
+	cat $< >> $@
+
+wiki-clean:
+	-rm ${WIKI_MD}
+	-rm ${WIKI_HTML}
+	-rmdir $(shell find ${WIKI_DIR} -mindepth 1 -type d | sort -r)
 
 ###############################################################################
 
@@ -198,6 +213,9 @@ julia-plots: ${JULIA_PLOTS_HTML}
 
 %.mkplt.html : %.mkplt.jl
 	julia $< $@
+
+julia-clean:
+	-rm ${JULIA_PLOTS_HTML}
 
 ###############################################################################
 
@@ -233,25 +251,17 @@ ${RESUME_TAR}: ${RESUME_SRC}
 ${CV_TAR}: ${CV_SRC}
 	cp ${CV_SRC} ${CV_TAR}
 
+resume-clean:
+	-rm ${RESUME_TAR}
+	-rm ${CV_TAR}
+
 ###############################################################################
 
-.PHONY = ${RESUME_SRC} ${CV_SRC} website main blog notes resume clean build \
-         lock unlock test install build-forever julia-plots
+.PHONY = ${RESUME_SRC} ${CV_SRC} website main blog wiki resume clean build \
+         lock unlock test install build-forever julia-plots main-clean \
+		 blog-clean wiki-clean resume-clean julia-clean
 
 ###############################################################################
 
 # Clean up after the builder
-clean:
-	@echo "================ CLEANING BUILD FILES ================="
-	-rm ${RESUME_TAR}
-	-rm ${CV_TAR}
-	-rm ${MAIN_HTML}
-	-rm ${POST_HTML}
-	-rm ${NOTES_HTML}
-	-rm ${TIME_HTML}
-	-rm ${TAGS_HTML}
-	-rm ${TIME_MD}
-	-rm ${TAGS_MD}
-	-rm ${TOC_MD}
-	-rm ${TOC_HTML}
-	-rm ${JULIA_PLOTS_HTML}
+clean: main-clean blog-clean wiki-clean resume-clean julia-clean

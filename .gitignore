@@ -11,5 +11,8 @@ source/notes/notes
 *.tmp
 *.pdf
 
+# For wiki, these are also build files
+source/wiki/*.md
+
 # Ignore the resume directory thats created here
 .__resume__/
