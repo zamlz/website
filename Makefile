@@ -55,9 +55,9 @@ test-wiki: wiki
 # Install to the server folder (notice the lock)
 install:
 	@echo "================= INSTALLING WEBSITE ================="
-	./scripts/install.sh ${MAIN_DIR} ${MAIN_INSTALL_DIR}
-	./scripts/install.sh ${BLOG_DIR} ${BLOG_INSTALL_DIR}
-	./scripts/install.sh ${WIKI_DIR} ${WIKI_INSTALL_DIR}
+	@./scripts/install.sh ${MAIN_DIR} ${MAIN_INSTALL_DIR}
+	@./scripts/install.sh ${BLOG_DIR} ${BLOG_INSTALL_DIR}
+	@./scripts/install.sh ${WIKI_DIR} ${WIKI_INSTALL_DIR}
 
 ###############################################################################
 
