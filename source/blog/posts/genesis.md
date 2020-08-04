@@ -1,10 +1,8 @@
-
 ---
 title: Genesis
 author: Amlesh Sivanantham
 date: May 5, 2018
-css:
-  - "/resources/default.css"
+
 ---
 <!-- ADDS THE INCLUDE PLOT FUNCTIONS -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
