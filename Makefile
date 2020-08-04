@@ -55,58 +55,9 @@ test-wiki: wiki
 # Install to the server folder (notice the lock)
 install:
 	@echo "================= INSTALLING WEBSITE ================="
-	@echo "Source Directory  : ${MAIN_DIR}"
-	@echo "Install Directory : ${MAIN_INSTALL_DIR}"
-	@echo "======================================================"
-	-rm -rfv ${MAIN_INSTALL_DIR}
-	@echo "======================================================"
-	rsync -a --include '*/' --include '*.html' --exclude '*' \
-		${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
-	@find -L ${MAIN_DIR} -name '*.html'
-	rsync -a --include '*/' --include '*.pdf' --exclude '*' \
-		${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
-	@find -L ${MAIN_DIR} -name '*.pdf'
-	rsync -a --include '*/' --include '*.gif' --exclude '*' \
-		${MAIN_DIR}/ ${MAIN_INSTALL_DIR}/
-	@find -L ${MAIN_DIR} -name '*.gif'
-	rsync -a --include '*/' --include '*.css' --exclude '*' \
-		resources ${MAIN_INSTALL_DIR}/
-	@find -L ${MAIN_DIR} -name '*.css'
-	cp resources/favicon.ico ${MAIN_INSTALL_DIR}/
-	@echo "======================================================"
-	@echo "Source Directory  : ${BLOG_DIR}"
-	@echo "Install Directory : ${BLOG_INSTALL_DIR}"
-	@echo "======================================================"
-	-rm -rfv ${BLOG_INSTALL_DIR}
-	@echo "======================================================"
-	rsync -a --include '*/' --include '*.html' --exclude '*' \
-		${BLOG_DIR}/ ${BLOG_INSTALL_DIR}/
-	@find -L ${BLOG_DIR} -name '*.html'
-	rsync -a --include '*/' --include '*.css' --exclude '*' \
-		resources ${BLOG_INSTALL_DIR}/
-	@find -L ${MAIN_DIR} -name '*.css'
-	cp resources/favicon.ico ${BLOG_INSTALL_DIR}/
-	@echo "======================================================"
-	@echo "Source Directory  : ${NOTES_DIR}"
-	@echo "Install Directory : ${NOTES_INSTALL_DIR}"
-	@echo "======================================================"
-	-rm -rfv ${NOTES_INSTALL_DIR}
-	@echo "======================================================"
-	-rsync -a --include '*/' --include '*.html' --exclude '*' \
-		${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
-	-rsync -a --include '*/' --include '*.html' --exclude '*' \
-		${NOTES_DIR}/wiki/ ${NOTES_INSTALL_DIR}/wiki/
-	-@find -L ${NOTES_DIR} -name '*.html'
-	-rsync -a --include '*/' --include '*.png' --exclude '*' \
-		${NOTES_DIR}/ ${NOTES_INSTALL_DIR}/
-	-rsync -a --include '*/' --include '*.png' --exclude '*' \
-		${NOTES_DIR}/notes/ ${NOTES_INSTALL_DIR}/notes/
-	-@find -L ${NOTES_DIR} -name '*.png'
-	-rsync -a --include '*/' --include '*.css' --exclude '*' \
-		resources ${NOTES_INSTALL_DIR}/
-	-@find -L ${MAIN_DIR} -name '*.css'
-	cp resources/favicon.ico ${NOTES_INSTALL_DIR}/
-	@echo "======================================================"
+	./scripts/install.sh ${MAIN_DIR} ${MAIN_INSTALL_DIR}
+	./scripts/install.sh ${BLOG_DIR} ${BLOG_INSTALL_DIR}
+	./scripts/install.sh ${WIKI_DIR} ${WIKI_INSTALL_DIR}
 
 ###############################################################################
 
