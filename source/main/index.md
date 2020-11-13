@@ -22,7 +22,7 @@ I spend alot of time thinking about these things:
 + Machine Learning / Reinforcement Learning
 + Linux
 
-Here is my [resume](./data/amlesh_resume.pdf) if you're intersted.
+Here is my [resume](./data/amlesh_curriculum_vitae.pdf) if you're intersted.
 
 This site doesn't really having anything except a link to my GitHub profile.
 Hopefully that will change in the future.
