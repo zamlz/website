@@ -44,7 +44,7 @@ test-main: resume main
 	@echo "================ STARTING TEST SERVER ================"
 	./scripts/server.sh ${MAIN_DIR} ${ADDRESS} 8000
 
-test-blog: julia-plots blog
+test-blog: blog
 	@echo "================ STARTING TEST SERVER ================"
 	./scripts/server.sh ${BLOG_DIR} ${ADDRESS} 8000
 

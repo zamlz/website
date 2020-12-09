@@ -40,7 +40,7 @@ crossorigin="anonymous">
 </script>
 </head>
 <body>
-<div style="border-bottom: solid thin #888; padding: 10px;">
+<div class="header-div">
   <div style="padding-top: 10px; padding-bottom: 10px;">
   $if(title)$
   <p class="name">$title$</p>
@@ -65,7 +65,7 @@ crossorigin="anonymous">
 $for(include-before)$
     $include-before$
 $endfor$
-<div style="padding: 10px;">
+<div class="body-div">
 $if(date)$
     <h3>[$date$]</h3>
 $endif$

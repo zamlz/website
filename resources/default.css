@@ -6,18 +6,19 @@ a {
 
 a:link {
     color: #181818;
-    border-bottom: solid thin #4585AA;
+    border-bottom: solid thin #d6ceba;
+    font-weight: bold;
 }
 
 a:visited {
-    color: #4585AA;
-    border-bottom: dotted thin #4585AA;
+    color: #181818;
+    border-bottom: solid thin #d6ceba;
 }
 
 a:hover {
-    color: #000;
+    color: #fff;
     border-bottom: none;
-    background: #4585AA;
+    background: #181818;
 }
 
 a:active {
@@ -26,35 +27,30 @@ a:active {
     border-bottom: dotted thin #d6ceba;
 }
 
-.heading a:link{
-    color: #181818;
-    border-bottom: solid thin #d6ceba;
-    font-weight: bold;
-}
-
-.heading a:visited {
-    color: #181818;
-    border-bottom: solid thin #d6ceba;
-}
-
-.heading a:hover {
-    color: #fff;
-    border-bottom: none;
-    background: #181818;
-}
-
 body {
     margin-top: 50px;
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    min-width: 40em;
+    min-width: 50em;
     max-width: 800px;
-    border: thin solid #777777;
+    border: outset #777777;
+    border-width: 5px;
     font-family: 'Computer Modern Serif', Georgia, Cambria, 'Times New Roman', Times, serif;
     font-size: 20px;
     line-height: 1.4;
     color: #181818;
+    background: #071531;
+}
+
+.header-div {
+    border-bottom: solid #888;
+    padding: 10px;
+    background: #ffffff;
+}
+
+.body-div {
+    padding: 40px;
     background: #ffffff;
 }
 
@@ -93,6 +89,8 @@ h2, .heading, .name {
 }
 
 .profile {
+    border: solid #777777;
+    border-width: 3px;
     display: block;
     margin-left: auto;
     margin-right: auto;

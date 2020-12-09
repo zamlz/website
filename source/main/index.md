@@ -4,12 +4,13 @@ subtitle: computer scientist | software engineer
 
 ---
 
-<img class="profile" src="https://avatars3.githubusercontent.com/u/10750027?s=460&u=d9e9425202ba898244d14b6e8c0a23c29c36ccfa&v=4"/>
+<img class="profile" src="data/profile.png"/>
+<!-- AM I REALLY THIS CRINGE
 <div class="quote"><i>
     "Simplicity is the final achievement. After one has played quantity of
     notes and more notes, it is simplicity that emerges as the crowning reward
     of art." - Frédéric Chopin
-</i></div>
+</i></div> -->
 
 I am currently a NLP Engineer at Wells Fargo.
 
