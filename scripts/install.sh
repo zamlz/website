@@ -23,6 +23,10 @@ rsync -a --include '*/' --include '*.gif' --exclude '*' \
     ${SOURCE_DIR}/ ${INSTALL_DIR}/
 find -L ${SOURCE_DIR} -name '*.gif'
 
+rsync -a --include '*/' --include '*.png' --exclude '*' \
+    ${SOURCE_DIR}/ ${INSTALL_DIR}/
+find -L ${SOURCE_DIR} -name '*.png'
+
 rsync -a --include '*/' --include '*.css' --exclude '*' \
     resources ${INSTALL_DIR}/
 find -L ${SOURCE_DIR} -name '*.css'
