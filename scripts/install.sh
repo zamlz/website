@@ -27,9 +27,13 @@ rsync -a --include '*/' --include '*.png' --exclude '*' \
     ${SOURCE_DIR}/ ${INSTALL_DIR}/
 find -L ${SOURCE_DIR} -name '*.png'
 
+rsync -a --include '*/' --include '*.png' --exclude '*' \
+    resources ${INSTALL_DIR}/
+find -L resources -name '*.png'
+
 rsync -a --include '*/' --include '*.css' --exclude '*' \
     resources ${INSTALL_DIR}/
-find -L ${SOURCE_DIR} -name '*.css'
+find -L resources -name '*.css'
 
 cp resources/favicon.ico ${INSTALL_DIR}/
 
