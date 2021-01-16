@@ -40,7 +40,7 @@ body {
     font-size: 20px;
     line-height: 1.4;
     color: #181818;
-    background: #071531;
+    background-image: url("/resources/fractal.png");
 }
 
 .header-div {
