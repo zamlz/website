@@ -2,7 +2,7 @@
 #+SUBTITLE: Computer Scientist | Software Engineer
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/resources/profile.css" />
 
-[[./data/profile.png]]
+[[./data/spaceman.png]]
 
 I am currently a NLP Engineer at Wells Fargo.
 
