@@ -1,0 +1,16 @@
+#+TITLE: Amlesh Sivanantham
+#+SUBTITLE: Computer Scientist | Software Engineer
+
+[[./data/profile.png]]
+
+I am currently a NLP Engineer at Wells Fargo.
+
+I was formerly a Computer Science Masters Student at the [[https://robotics.usc.edu/resl/][Robotic Embedded Systems Laboratory]] at the [[https://www.usc.edu/][University of Southern California]]. I spend a lot of time thinking about these domains:
+
+- Deep Reinforcement Learning
+- Ethics of Artificial Ingelligence
+- GNU/Linux
+
+Here is my [[./data/amlesh_curriculum_vitae.pdf][resume]] if you're interested to learn more about me.
+
+The site doesn't have much to offer yet besides a link to my GitHub profile where you can find projects I've worked on in the past. I also want to start writing some blog posts of things that interest me in the future.
