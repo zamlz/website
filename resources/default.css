@@ -89,16 +89,6 @@ h2, .heading, .name {
     text-indent: -2em;
 }
 
-.profile {
-    border: solid #777777;
-    border-width: 3px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 15em;
-    border-radius: 10%;
-}
-
 .quote {
     color: #333;
     font-size: 0.8em;
