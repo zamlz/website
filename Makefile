@@ -56,7 +56,7 @@ install:
 
 # Build dependencies
 PANDOC_ORG = pandoc -f org -t html
-PANDOC_MD = pandoc -f md -t html
+PANDOC_MD = pandoc -f markdown -t html
 PD_TEMPLATE = ./resources/template.html
 LIST_GENERATOR = ./scripts/make_list.py
 
